@@ -1,13 +1,10 @@
-import React, {PropTypes, Component} from 'react';
-import {Provider, connect} from 'react-redux';
-import Counter from '../components/Counter.jsx';
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import Game from '../containers/Game.jsx';
 
 class App extends React.Component {
-
     render() {
-        return <div>
-            <Counter></Counter>
-        </div>
+        return <Game></Game>
     }
 }
 

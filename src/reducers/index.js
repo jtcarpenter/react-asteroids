@@ -1,6 +1,10 @@
-import {combineReducers} from 'redux'
-import counter from './counter'
+import {combineReducers} from 'redux';
+import spaceship from './spaceship';
+import laser from './laser';
+import asteroidField from './asteroidField';
 
 export default combineReducers({
-    counter
+    spaceship,
+    laser,
+    asteroidField
 });
