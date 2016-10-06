@@ -1,11 +1,9 @@
 import React, {PropTypes, Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Provider, connect} from 'react-redux';
-import {Layer, Rect, Line, Stage, Group} from 'react-konva';
-import Spaceship from '../components/Spaceship.jsx';
-import LaserBolt from '../components/LaserBolt.jsx';
-import Asteroid from '../components/Asteroid.jsx';
-import Star from '../components/Star.jsx';
+import {Rect, Stage} from 'react-konva';
+import Constellation from '../components/Constellation.jsx';
+import AsteroidField from '../components/AsteroidField.jsx';
 import * as keyCodes from '../constants/keyCodes.js';
 import * as gameConfig from '../constants/gameConfig.js';
 import {
@@ -16,7 +14,8 @@ import {
     stop,
     stopRotation,
     fire,
-    update
+    update,
+    asteroidHitTest
 } from '../actions/gameActions.js';
 
 class Game extends React.Component {
@@ -49,6 +48,7 @@ class Game extends React.Component {
     }
 
     updateGame() {
+        this.props.dispatch(asteroidHitTest());
         this.props.dispatch(update());
         requestAnimationFrame(this.updateGame.bind(this));
     }
@@ -69,7 +69,7 @@ class Game extends React.Component {
 
     render() {
 
-        const {
+        var {
             spaceship,
             laser,
             asteroidField,
@@ -86,44 +86,18 @@ class Game extends React.Component {
                 height={gameConfig.GAME_HEIGHT}
                 scaleX={gameConfig.GAME_SCALE}
                 scaleY={gameConfig.GAME_SCALE}>
-                <Layer>
-                    <Rect
-                        width={gameConfig.GAME_WIDTH}
-                        height={gameConfig.GAME_HEIGHT}
-                        fill="#000000"/>
-                    {constellation.stars.map((star, index) => {
-                        return <Star
-                            key={Math.random()}
-                            pos={star.pos}
-                            radius={star.radius}
-                            opacity={star.opacity}>
-                        </Star>
-                    })}
-                </Layer>
-                <Layer>
-                    <Rect
-                        width={gameConfig.GAME_WIDTH}
-                        height={gameConfig.GAME_HEIGHT}
-                        />
-                    <Spaceship
-                        pos={spaceship.pos}
-                        rot={spaceship.rot}
-                    />
-                    {laser.bolts.map((bolt, index) => {
-                        return <LaserBolt
-                            key={Math.random()}
-                            rot={bolt.rot}
-                            pos={bolt.pos}>
-                        </LaserBolt>
-                    })}
-                    {asteroidField.asteroids.map((asteroid, index) => {
-                        return <Asteroid
-                            key={Math.random()}
-                            rot={asteroid.rot}
-                            pos={asteroid.pos}>
-                        </Asteroid>
-                    })}
-                </Layer>
+                <Constellation
+                    constellation= {constellation}
+                    width={gameConfig.GAME_WIDTH}
+                    height={gameConfig.GAME_HEIGHT}>
+                </Constellation>
+                <AsteroidField
+                    spaceship={spaceship}
+                    laser={laser}
+                    asteroidField={asteroidField}
+                    width={gameConfig.GAME_WIDTH}
+                    height={gameConfig.GAME_HEIGHT}>
+                </AsteroidField>
             </Stage>
         </div>
     }

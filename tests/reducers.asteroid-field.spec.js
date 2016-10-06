@@ -18,11 +18,11 @@ describe('asteroidField reducer', () => {
             };
         });
 
-        it(`should create ${gameConfig.ASTEROIDS_START_COUNT} asteroids`, () => {
+        it(`should create ${gameConfig.ASTEROID_START_COUNT} asteroids`, () => {
             actual = asteroidField(state,
                 {type: actionTypes.START}
             );
-            expect(actual.asteroids.length).to.equal(gameConfig.ASTEROIDS_START_COUNT);
+            expect(actual.asteroids.length).to.equal(gameConfig.ASTEROID_START_COUNT);
         });
     });
 
@@ -102,5 +102,9 @@ describe('asteroidField reducer', () => {
             expect(actual.asteroids[0].pos.x).to.equal(X_POS);
             expect(actual.asteroids[0].pos.y).to.equal(gameConfig.GAME_HEIGHT - Y_POS);
         });
+    });
+
+    describe('ASTEROID_HIT action type', () => {
+
     });
 });

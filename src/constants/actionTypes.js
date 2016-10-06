@@ -6,3 +6,5 @@ export const STOP = 'STOP';
 export const STOP_ROTATION = 'STOP_ROTATION';
 export const FIRE = 'FIRE';
 export const UPDATE = 'UPDATE';
+export const HIT_TEST = 'HIT_TEST';
+export const ASTEROID_HIT = 'ASTEROID_HIT';

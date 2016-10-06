@@ -5,7 +5,7 @@ import {Circle} from 'react-konva';
 class Star extends React.Component {
 
     render() {
-        const {pos, opacity, radius} = this.props;
+        var {pos, opacity, radius} = this.props;
         return <Circle
                 x={pos.x}
                 y={pos.y}

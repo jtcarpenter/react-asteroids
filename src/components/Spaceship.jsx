@@ -1,16 +1,23 @@
 import React, {PropTypes, Component} from 'react';
 import * as types from '../constants/actionTypes';
 import {Provider, connect} from 'react-redux';
-import {Layer, Rect, Line, Stage, Group} from 'react-konva';
+import {Line} from 'react-konva';
 
 class Spaceship extends React.Component {
 
     render() {
-        const {pos, rot} = this.props;
+        var {pos, rot, radius} = this.props;
         return <Line
                 x={pos.x}
                 y={pos.y}
-                points={[-20, -10, 20, 0, -20, 10, -10, 0]}
+                points={
+                    [
+                        -(radius *2), -radius,
+                        radius * 2, 0,
+                        -(radius * 2), radius,
+                        -radius, 0
+                    ]
+                }
                 strokeWidth={1}
                 stroke="#ffffff"
                 closed="true"

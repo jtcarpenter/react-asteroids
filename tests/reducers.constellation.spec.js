@@ -18,7 +18,7 @@ describe('constellation reducer', () => {
             };
         });
 
-        it(`should create ${gameConfig.ASTEROIDS_START_COUNT} asteroids`, () => {
+        it(`should create ${gameConfig.ASTEROID_START_COUNT} asteroids`, () => {
             actual = constellation(state,
                 {type: actionTypes.START}
             );

@@ -7,6 +7,7 @@ export default function spaceship(state = {
         x: Math.round(gameConfig.GAME_WIDTH / 2),
         y: Math.round(gameConfig.GAME_HEIGHT / 2)
     },
+    radius: gameConfig.SPACESHIP_RADIUS,
     rotSpeed: 0,
     speed: 0
 }, action) {

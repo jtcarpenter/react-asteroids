@@ -16,7 +16,8 @@
     "react-dom": "^15.3.1",
     "react-konva": "^1.0.5",
     "react-redux": "^4.4.5",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -30,6 +31,7 @@
     "karma-coverage": "^1.1.1",
     "karma-mocha": "^1.1.1",
     "karma-phantomjs-launcher": "^1.0.2",
+    "karma-sinon": "^1.0.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "^1.8.0",
@@ -39,6 +41,8 @@
     "phantomjs-prebuilt": "^2.1.12",
     "react-addons-test-utils": "^15.3.1",
     "redux-devtools": "^3.3.1",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.15.1"
   }

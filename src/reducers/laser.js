@@ -25,6 +25,7 @@ export default function laser(state = {
                         x: bolt.pos.x + xIncr,
                         y: bolt.pos.y + yIncr
                     },
+                    radius: gameConfig.LASER_BOLT_RADIUS,
                     rot: bolt.rot
                 }
             })
@@ -37,6 +38,11 @@ export default function laser(state = {
                         bolt.pos.y <= gameConfig.GAME_HEIGHT;
             });
 
+            return Object.assign({}, state, {bolts: bolts});
+        case actionTypes.ASTEROID_HIT:
+            bolts = state.bolts.filter(function(laserBolt, index) {
+                return index !== action.laserBolt.index
+            });
             return Object.assign({}, state, {bolts: bolts});
         default:
             return state;

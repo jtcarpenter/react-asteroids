@@ -108,4 +108,8 @@ describe('laser reducer', () => {
             expect(actual.bolts.length).to.equal(0);
         });
     });
+
+    describe('ASTEROID_HIT action type', () => {
+
+    });
 });

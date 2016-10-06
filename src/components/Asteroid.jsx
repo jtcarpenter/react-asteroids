@@ -1,24 +1,25 @@
 import React, {PropTypes, Component} from 'react';
 import {Provider, connect} from 'react-redux';
-import {Layer, Rect, Line, Stage, Group} from 'react-konva';
+import {Line} from 'react-konva';
 
 class Asteroid extends React.Component {
 
     render() {
-        const {pos, rot} = this.props;
+        var {pos, rot, radius} = this.props;
+        var unit = radius / 10;
         return <Line
                 x={pos.x}
                 y={pos.y}
                 points={
                     [
-                        -10, -50,
-                        25, -45,
-                        50, -30,
-                        40, 25,
-                        20, 50,
-                        -10, 45,
-                        -40, 20,
-                        -50, -20
+                        -(radius - (unit * 8)), -radius,
+                        radius - (unit * 5), -(radius - unit),
+                        radius, -(radius - (unit * 4)),
+                        radius - (unit * 2), radius - (unit * 5),
+                        radius - (unit * 4), radius,
+                        -(radius - (unit * 8)), radius - unit,
+                        -(radius - (unit * 2)), radius - (unit * 6),
+                        -radius, -(radius - (unit * 6))
                     ]
                 }
                 closed="true"
