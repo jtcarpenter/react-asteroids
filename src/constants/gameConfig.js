@@ -6,3 +6,6 @@ export const SPACESHIP_ACCL = 7;
 export const LASER_BOLT_ACCL = 15;
 export const ASTEROID_START_MAX_ACCL = 5;
 export const ASTEROIDS_START_COUNT = 5;
+export const CONSTELLATION_COUNT = 25;
+export const CONSTELLATION_MIN_RADIUS = 0.5;
+export const CONSTELLATION_MAX_RADIUS = 1.5;

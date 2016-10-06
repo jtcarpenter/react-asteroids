@@ -5,6 +5,7 @@ import {Layer, Rect, Line, Stage, Group} from 'react-konva';
 import Spaceship from '../components/Spaceship.jsx';
 import LaserBolt from '../components/LaserBolt.jsx';
 import Asteroid from '../components/Asteroid.jsx';
+import Star from '../components/Star.jsx';
 import * as keyCodes from '../constants/keyCodes.js';
 import * as gameConfig from '../constants/gameConfig.js';
 import {
@@ -71,7 +72,8 @@ class Game extends React.Component {
         const {
             spaceship,
             laser,
-            asteroidField
+            asteroidField,
+            constellation
         } = this.props;
 
         return <div
@@ -89,6 +91,20 @@ class Game extends React.Component {
                         width={gameConfig.GAME_WIDTH}
                         height={gameConfig.GAME_HEIGHT}
                         fill="#000000"/>
+                    {constellation.stars.map((star, index) => {
+                        return <Star
+                            key={Math.random()}
+                            pos={star.pos}
+                            radius={star.radius}
+                            opacity={star.opacity}>
+                        </Star>
+                    })}
+                </Layer>
+                <Layer>
+                    <Rect
+                        width={gameConfig.GAME_WIDTH}
+                        height={gameConfig.GAME_HEIGHT}
+                        />
                     <Spaceship
                         pos={spaceship.pos}
                         rot={spaceship.rot}
@@ -124,5 +140,6 @@ class Game extends React.Component {
 export default connect((state) =>({
     spaceship: state.spaceship,
     laser: state.laser,
-    asteroidField: state.asteroidField
+    asteroidField: state.asteroidField,
+    constellation: state.constellation
 }))(Game);
