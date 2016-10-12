@@ -7,3 +7,15 @@ export function hitTest(obj1, obj2) {
     }
     return false;
 }
+
+export function randomNumInRange(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+export function calcXDist(rotation, distance) {
+    return Math.cos(rotation * Math.PI / 180) * distance;
+}
+
+export function calcYDist(rotation, distance) {
+    return Math.sin(rotation * Math.PI / 180) * distance;
+}

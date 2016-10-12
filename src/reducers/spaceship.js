@@ -1,5 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 import * as gameConfig from '../constants/gameConfig.js';
+import {calcXDist, calcYDist} from '../helpers/gameHelpers.js';
 
 export default function spaceship(state = {
     rot: 0,
@@ -33,14 +34,12 @@ export default function spaceship(state = {
                 rotSpeed: 0
             });
         case actionTypes.UPDATE:
-            let xIncr = Math.cos(state.rot * Math.PI / 180) * state.speed;
-            let yIncr = Math.sin(state.rot * Math.PI / 180) * state.speed;
             return Object.assign({}, state, {
                 pos: {
-                    x: (state.pos.x + xIncr + gameConfig.GAME_WIDTH)
-                        % gameConfig.GAME_WIDTH,
-                    y: (state.pos.y + yIncr + gameConfig.GAME_HEIGHT)
-                        % gameConfig.GAME_HEIGHT
+                    x: (state.pos.x + calcXDist(state.rot, state.speed) +
+                        gameConfig.GAME_WIDTH) % gameConfig.GAME_WIDTH,
+                    y: (state.pos.y + calcYDist(state.rot, state.speed) +
+                        gameConfig.GAME_HEIGHT) % gameConfig.GAME_HEIGHT
                 },
                 rot: (state.rot + 360 + state.rotSpeed) % 360
             });

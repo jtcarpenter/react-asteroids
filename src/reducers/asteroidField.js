@@ -1,5 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 import * as gameConfig from '../constants/gameConfig.js';
+import {calcXDist, calcYDist} from '../helpers/gameHelpers.js';
 
 export default function asteroidField(state = {
     maxAcceleration: gameConfig.ASTEROID_START_MAX_ACCL,
@@ -28,16 +29,13 @@ export default function asteroidField(state = {
             }
             return Object.assign({}, state, {asteroids: asteroids});
         case actionTypes.UPDATE:
-            // TODO: should this be var, let or const?
             asteroids = state.asteroids.map(function(asteroid) {
-                let xIncr = Math.cos(asteroid.rot * Math.PI /180) * asteroid.speed;
-                let yIncr = Math.sin(asteroid.rot * Math.PI /180) * asteroid.speed;
                 return {
                     pos: {
-                        x: (asteroid.pos.x + xIncr + gameConfig.GAME_WIDTH)
-                            % gameConfig.GAME_WIDTH,
-                        y: (asteroid.pos.y + yIncr + gameConfig.GAME_HEIGHT)
-                            % gameConfig.GAME_HEIGHT
+                        x: (asteroid.pos.x + calcXDist(asteroid.rot, asteroid.speed) +
+                            gameConfig.GAME_WIDTH) % gameConfig.GAME_WIDTH,
+                        y: (asteroid.pos.y + calcYDist(asteroid.rot, asteroid.speed) +
+                            gameConfig.GAME_HEIGHT) % gameConfig.GAME_HEIGHT
                     },
                     radius: asteroid.radius,
                     rot: asteroid.rot,

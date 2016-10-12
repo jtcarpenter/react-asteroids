@@ -1,5 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 import * as gameConfig from '../constants/gameConfig.js';
+import {calcXDist, calcYDist} from '../helpers/gameHelpers.js';
 
 export default function laser(state = {
     speed: gameConfig.LASER_BOLT_ACCL,
@@ -18,12 +19,10 @@ export default function laser(state = {
 
             // recalculate bolt positions
             bolts = state.bolts.map(function(bolt) {
-                let xIncr = Math.cos(bolt.rot * Math.PI / 180) * state.speed;
-                let yIncr = Math.sin(bolt.rot * Math.PI / 180) * state.speed;
                 return {
                     pos: {
-                        x: bolt.pos.x + xIncr,
-                        y: bolt.pos.y + yIncr
+                        x: bolt.pos.x + calcXDist(bolt.rot, state.speed),
+                        y: bolt.pos.y + calcYDist(bolt.rot, state.speed)
                     },
                     radius: gameConfig.LASER_BOLT_RADIUS,
                     rot: bolt.rot
