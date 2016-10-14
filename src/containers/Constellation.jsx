@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import {Provider, connect} from 'react-redux';
 import {Layer, Rect} from 'react-konva';
 import Star from '../components/Star.jsx';
 
@@ -29,4 +30,6 @@ class Constellation extends React.Component {
     }
 }
 
-export default Constellation;
+export default connect((state) =>({
+    constellation: state.constellation
+}))(Constellation);

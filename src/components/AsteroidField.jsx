@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {Provider, connect} from 'react-redux';
 import {Layer, Rect} from 'react-konva';
 import Spaceship from '../components/Spaceship.jsx';
 import LaserBolt from '../components/LaserBolt.jsx';

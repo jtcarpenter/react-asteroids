@@ -8,6 +8,42 @@ import * as gameConfig from '../src/constants/gameConfig.js';
 
 describe('spaceship reducer', () => {
 
+    const stoppedSpaceship = {
+        rot: undefined,
+        pos: {x: undefined, y: undefined},
+        radius: undefined,
+        rotSpeed: undefined,
+        speed: undefined
+    }
+    const startedSpaceship = {
+        rot: 0,
+        pos: {
+            x: Math.round(gameConfig.GAME_WIDTH / 2),
+            y: Math.round(gameConfig.GAME_HEIGHT / 2)
+        },
+        radius: gameConfig.SPACESHIP_RADIUS,
+        rotSpeed: 0,
+        speed: 0
+    }
+
+    describe('START action type', () => {
+
+        let state = {};
+        let actual = {};
+
+        beforeEach(() => {
+            state = Object.assign({}, stoppedSpaceship);
+        });
+
+        it('should initialise spaceship properties', () => {
+            expect(state).to.eql(stoppedSpaceship);
+            actual = spaceship(state,
+                {type: actionTypes.START}
+            );
+            expect(actual).to.eql(startedSpaceship);
+        });
+    });
+
     describe('ROTATE_RIGHT action type', () => {
 
         let state;

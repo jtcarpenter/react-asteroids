@@ -3,27 +3,27 @@ import * as gameConfig from '../constants/gameConfig.js';
 import {randomNumInRange} from '../helpers/gameHelpers.js';
 
 export default function constellation(state = {
-    stars: []
+    stars: (function() {
+        var stars = [];
+        while(stars.length < gameConfig.CONSTELLATION_COUNT) {
+            stars.push({
+                opacity: Math.round(Math.random()),
+                radius: randomNumInRange(
+                    gameConfig.CONSTELLATION_MIN_RADIUS,
+                    gameConfig.CONSTELLATION_MAX_RADIUS
+                ),
+                increasing: false,
+                pos: {
+                    x: Math.round(Math.random() * gameConfig.GAME_WIDTH),
+                    y: Math.round(Math.random() * gameConfig.GAME_HEIGHT)
+                }
+            });
+        }
+        return stars;
+    })()
 }, action) {
     var stars;
     switch (action.type) {
-        case actionTypes.START:
-            stars = [...state.stars];
-            while(stars.length < gameConfig.CONSTELLATION_COUNT) {
-                stars.push({
-                    opacity: Math.round(Math.random()),
-                    radius: randomNumInRange(
-                        gameConfig.CONSTELLATION_MIN_RADIUS,
-                        gameConfig.CONSTELLATION_MAX_RADIUS
-                    ),
-                    increasing: false,
-                    pos: {
-                        x: Math.round(Math.random() * gameConfig.GAME_WIDTH),
-                        y: Math.round(Math.random() * gameConfig.GAME_HEIGHT)
-                    }
-                });
-            }
-            return Object.assign({}, state, {stars: stars});
         case actionTypes.UPDATE:
             stars = state.stars.map(function(star) {
                 var ran = Math.random();

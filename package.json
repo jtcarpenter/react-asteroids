@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "konva": "^1.1.1",
+    "radium": "^0.18.1",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-konva": "^1.0.5",

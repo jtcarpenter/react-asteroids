@@ -7,22 +7,8 @@ import * as actionTypes from '../src/constants/actionTypes.js';
 import * as gameConfig from '../src/constants/gameConfig.js';
 
 describe('constellation reducer', () => {
-
-    describe('START action type', () => {
-        let state;
-        let actual;
-
-        beforeEach(() => {
-            state = {
-                stars: []
-            };
-        });
-
-        it(`should create ${gameConfig.ASTEROID_START_COUNT} asteroids`, () => {
-            actual = constellation(state,
-                {type: actionTypes.START}
-            );
-            expect(actual.stars.length).to.equal(gameConfig.CONSTELLATION_COUNT);
-        });
+    it(`should return initial state with ${gameConfig.CONSTELLATION_COUNT} stars`, () => {
+        expect(constellation(undefined, {}).stars.length)
+        .to.equal(gameConfig.CONSTELLATION_COUNT)
     });
 });

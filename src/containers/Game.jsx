@@ -2,12 +2,12 @@ import React, {PropTypes, Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Provider, connect} from 'react-redux';
 import {Rect, Stage} from 'react-konva';
-import Constellation from '../components/Constellation.jsx';
+import Constellation from '../containers/Constellation.jsx';
 import AsteroidField from '../components/AsteroidField.jsx';
+import Dashboard from '../containers/Dashboard.jsx';
 import * as keyCodes from '../constants/keyCodes.js';
 import * as gameConfig from '../constants/gameConfig.js';
 import {
-    start,
     rotateRight,
     rotateLeft,
     forward,
@@ -24,6 +24,7 @@ class Game extends React.Component {
         super();
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleKeyUp = this.handleKeyUp.bind(this);
+        this.focus = this.focus.bind(this);
     }
 
     handleKeyDown(event) {
@@ -72,22 +73,28 @@ class Game extends React.Component {
         var {
             spaceship,
             laser,
-            asteroidField,
-            constellation
+            asteroidField
         } = this.props;
+
+        var styles = {
+            position: 'relative',
+            width: gameConfig.GAME_WIDTH + 'px',
+            height: gameConfig.GAME_HEIGHT + 'px',
+            margin: '20px auto'
+        }
 
         return <div
                 ref="asteroids"
                 tabIndex="0"
                 onKeyDown={this.handleKeyDown}
-                onKeyUp={this.handleKeyUp}>
+                onKeyUp={this.handleKeyUp}
+                style={styles}>
             <Stage
                 width={gameConfig.GAME_WIDTH}
                 height={gameConfig.GAME_HEIGHT}
                 scaleX={gameConfig.GAME_SCALE}
                 scaleY={gameConfig.GAME_SCALE}>
                 <Constellation
-                    constellation= {constellation}
                     width={gameConfig.GAME_WIDTH}
                     height={gameConfig.GAME_HEIGHT}>
                 </Constellation>
@@ -99,15 +106,20 @@ class Game extends React.Component {
                     height={gameConfig.GAME_HEIGHT}>
                 </AsteroidField>
             </Stage>
+            <Dashboard
+                width={gameConfig.GAME_WIDTH}
+                height={gameConfig.GAME_HEIGHT}
+                onStart={this.focus}>
+            </Dashboard>
         </div>
     }
 
-    componentDidMount() {
+    focus() {
         ReactDOM.findDOMNode(this.refs.asteroids).focus();
-        this.updateGame();
+    }
 
-        // TODO: start should be triggered by a keypress
-        this.props.dispatch(start());
+    componentDidMount() {
+        this.updateGame();
     }
 }
 
@@ -115,5 +127,4 @@ export default connect((state) =>({
     spaceship: state.spaceship,
     laser: state.laser,
     asteroidField: state.asteroidField,
-    constellation: state.constellation
 }))(Game);

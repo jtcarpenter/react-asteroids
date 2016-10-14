@@ -3,16 +3,24 @@ import * as gameConfig from '../constants/gameConfig.js';
 import {calcXDist, calcYDist} from '../helpers/gameHelpers.js';
 
 export default function spaceship(state = {
-    rot: 0,
-    pos: {
-        x: Math.round(gameConfig.GAME_WIDTH / 2),
-        y: Math.round(gameConfig.GAME_HEIGHT / 2)
-    },
-    radius: gameConfig.SPACESHIP_RADIUS,
-    rotSpeed: 0,
-    speed: 0
+    rot: undefined,
+    pos: {x: undefined, y: undefined},
+    radius: undefined,
+    rotSpeed: undefined,
+    speed: undefined
 }, action) {
     switch (action.type) {
+        case actionTypes.START:
+            return Object.assign({}, state, {
+                rot: 0,
+                pos: {
+                    x: Math.round(gameConfig.GAME_WIDTH / 2),
+                    y: Math.round(gameConfig.GAME_HEIGHT / 2)
+                },
+                radius: gameConfig.SPACESHIP_RADIUS,
+                rotSpeed: 0,
+                speed: 0
+            });
         case actionTypes.ROTATE_RIGHT:
             return Object.assign({}, state, {
                 rotSpeed: gameConfig.SPACESHIP_ROT_SPEED
