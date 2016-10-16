@@ -16,14 +16,21 @@ const style = {
     left: 0,
     color: 'white',
     fontFamily: 'Courier New, Courier, monospace'
-}
+};
 const navStyle = {
     textAlign: 'center',
     display: 'block',
-    width: gameConfig.GAME_WIDTH + 'px',
+    width: gameConfig.GAME_WIDTH,
     height: '40px',
     marginTop: '10px'
-}
+};
+const messagestyle = {
+    color: 'white',
+    width: '100%',
+    textAlign: 'center',
+    height: 20,
+    marginTop: gameConfig.GAME_HEIGHT / 4
+};
 const playBtnStyles = {
     'show': {
         background: 'transparent',
@@ -32,7 +39,7 @@ const playBtnStyles = {
         color: 'white',
         fontSize: '20px',
         display: 'block',
-        marginTop: gameConfig.GAME_WIDTH / 4,
+        marginTop: 10,
         marginLeft: 'auto',
         marginRight: 'auto',
         fontFamily: 'Courier New, Courier, monospace',
@@ -45,7 +52,7 @@ const playBtnStyles = {
     'hide': {
         display: 'none'
     }
-}
+};
 
 class Dashboard extends React.Component {
 
@@ -80,6 +87,7 @@ class Dashboard extends React.Component {
                 &#x21E8; to move
                 [SPACE] to shoot
             </div>
+             <p style={messagestyle}>{dashboard.message}</p>
             <button
                 onClick={this.handleClick}
                 style={playBtnStyle}>

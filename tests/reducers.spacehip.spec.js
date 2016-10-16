@@ -139,6 +139,23 @@ describe('spaceship reducer', () => {
         });
     });
 
+    describe('GAME_OVER action type', () => {
+
+        let state;
+        let actual;
+
+        beforeEach(() => {
+            state = startedSpaceship;
+        });
+
+        it('should return spaceship to reset state', () => {
+            actual = spaceship(state,
+                {type: actionTypes.GAME_OVER}
+            );
+            expect(actual).to.eql(stoppedSpaceship);
+        });
+    });
+
     describe('UPDATE action type', () => {
         let state;
         let actual;

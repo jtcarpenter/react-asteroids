@@ -58,10 +58,15 @@ export function asteroidHit(asteroid, laserBolt) {
     }
 }
 
+export function gameOver() {
+    return {
+        type: actionTypes.GAME_OVER
+    }
+}
+
 export function asteroidHitTest() {
     return (dispatch, getState) => {
 
-        // TODO: mock getState for test
         var {asteroidField, laser} = getState();
 
         for (let i = 0, l = asteroidField.asteroids.length; i < l; i++) {
@@ -72,8 +77,8 @@ export function asteroidHitTest() {
                 let b = {radius, pos: {x, y}};
 
                 if (hitTest(
-                    {pos: {x: a.pos.x, y: a.pos.y}, index: i, radius: a.radius},
-                    {pos: {x: b.pos.x, y: b.pos.y}, index: j, radius: b.radius}
+                    {pos: {x: a.pos.x, y: a.pos.y}, radius: a.radius},
+                    {pos: {x: b.pos.x, y: b.pos.y}, radius: b.radius}
                 )) {
                     dispatch(asteroidHit({
                         index: i,
@@ -89,6 +94,20 @@ export function asteroidHitTest() {
                         }
                     }));
                 }
+            }
+        }
+    }
+}
+
+export function spaceshipHitTest() {
+    return (dispatch, getState) => {
+        var {spaceship, asteroidField} = getState();
+        for (let i = 0, l = asteroidField.asteroids.length; i < l; i++) {
+            if (hitTest(
+                asteroidField.asteroids[i],
+                spaceship
+            )) {
+                dispatch(gameOver());
             }
         }
     }

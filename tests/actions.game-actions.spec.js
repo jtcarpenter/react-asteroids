@@ -72,6 +72,13 @@ describe('gameActions', () => {
         expect(gameActions.asteroidHit(asteroid, laserBolt)).to.eql(expectedAction);
     });
 
+    it('should create an action with type GAME_OVER', () => {
+        const expectedAction = {
+            type: actionTypes.GAME_OVER
+        };
+        expect(gameActions.gameOver()).to.eql(expectedAction);
+    });
+
     describe('asteroidHitTest', () => {
 
         var asteroidField ;
@@ -124,6 +131,53 @@ describe('gameActions', () => {
             const dispatch = sinon.spy();
             gameActions.asteroidHitTest()(dispatch, getState);
 
+            expect(dispatch.calledOnce).to.be.false;
+        });
+    });
+
+    describe('spaceshipHitTest', () => {
+
+        var asteroidField ;
+        var spaceship;
+
+        beforeEach(() => {
+            asteroidField = {
+                asteroids: [{
+                    radius: 10,
+                    pos: {x: 0, y: 0}
+                }]
+            };
+            spaceship = {
+                radius: 10,
+                pos: {x: 0, y: 19}
+            };
+        });
+
+        it('should dispatch gameOver action', () => {
+            const getState = () => ({
+                asteroidField: asteroidField,
+                spaceship: spaceship
+            });
+            const dispatch = sinon.spy();
+            var {index = 0, pos: {x, y}} = asteroidField.asteroids[0];
+            var asteroid = {index, pos: {x, y}};
+            const expectedAction = {
+                type: actionTypes.GAME_OVER
+            };
+            gameActions.spaceshipHitTest()(dispatch, getState);
+
+            expect(dispatch.calledOnce).to.be.true;
+            sinon.assert.calledWith(dispatch, expectedAction);
+        });
+
+        it('should not dispatch gameOver action', () => {
+            spaceship.pos.y = 21;
+            const getState = () => ({
+                asteroidField: asteroidField,
+                spaceship: spaceship
+            });
+            const dispatch = sinon.spy();
+            gameActions.spaceshipHitTest()(dispatch, getState);
 
             expect(dispatch.calledOnce).to.be.false;
         });

@@ -26,6 +26,27 @@ describe('asteroidField reducer', () => {
         });
     });
 
+    describe('GAME_OVER action type', () => {
+
+        let state;
+        let actual;
+
+        beforeEach(() => {
+            state = {
+                asteroids: [
+                    {speed: 10, rot: 0, pos: {x: 0, y: 0}}
+                ]
+            };
+        });
+
+        it('should remove all asteroids', () => {
+            actual = asteroidField(state,
+                {type: actionTypes.GAME_OVER}
+            );
+            expect(actual.asteroids.length).to.equal(0);
+        });
+    });
+
     describe('UPDATE action type', () => {
         let state;
         let actual;
@@ -60,7 +81,7 @@ describe('asteroidField reducer', () => {
             expect(actual.asteroids[0].pos.y - Y_POS).to.be.closeTo(y, 0.5);
         });
 
-        it('it should wrap when leaving right of game area', () => {
+        it('should wrap when leaving right of game area', () => {
             // facing right
             state.asteroids[0].pos.x = gameConfig.GAME_WIDTH;
             actual = asteroidField(state,
@@ -70,7 +91,7 @@ describe('asteroidField reducer', () => {
             expect(actual.asteroids[0].pos.y).to.equal(Y_POS);
         });
 
-        it('it should wrap when leaving bottom of game area', () => {
+        it('should wrap when leaving bottom of game area', () => {
             // facing down
             state.asteroids[0].rot = 90;
             state.asteroids[0].pos.y = gameConfig.GAME_HEIGHT;
@@ -81,7 +102,7 @@ describe('asteroidField reducer', () => {
             expect(actual.asteroids[0].pos.y).to.equal(SPEED);
         });
 
-        it('it should wrap when leaving left of game area', () => {
+        it('should wrap when leaving left of game area', () => {
             // facing left
             state.asteroids[0].rot = 180;
             state.asteroids[0].pos.x = 0;
@@ -92,7 +113,7 @@ describe('asteroidField reducer', () => {
             expect(actual.asteroids[0].pos.y).to.equal(Y_POS);
         });
 
-        it('it should wrap when leaving top of game area', () => {
+        it('should wrap when leaving top of game area', () => {
             // facing up
             state.asteroids[0].rot = 270;
             state.asteroids[0].pos.y = 0;
@@ -106,5 +127,28 @@ describe('asteroidField reducer', () => {
 
     describe('ASTEROID_HIT action type', () => {
 
+        let state;
+        let actual;
+
+        beforeEach(() => {
+            state = {
+                asteroids: [
+                    {speed: 10, rot: 10, pos: {x: 0, y: 0}},
+                    {speed: 10, rot: 10, pos: {x: 10, y: 10}}
+                ]
+            };
+        });
+
+        it('should remove asteroid of returned index', () => {
+            expect(state.asteroids.length).to.equal(2);
+            actual = asteroidField(state,
+                {
+                    type: actionTypes.ASTEROID_HIT,
+                    asteroid: {speed: 10, rot: 10, pos: {x: 10, y: 10}, index: 0}
+                },
+            );
+            expect(actual.asteroids.length).to.equal(1);
+            expect(actual.asteroids[0].pos.x).to.equal(10);
+        });
     });
 });

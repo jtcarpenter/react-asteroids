@@ -8,3 +8,4 @@ export const FIRE = 'FIRE';
 export const UPDATE = 'UPDATE';
 export const HIT_TEST = 'HIT_TEST';
 export const ASTEROID_HIT = 'ASTEROID_HIT';
+export const GAME_OVER = 'GAME_OVER';

@@ -28,6 +28,8 @@ export default function asteroidField(state = {
                 });
             }
             return Object.assign({}, state, {asteroids: asteroids});
+        case actionTypes.GAME_OVER:
+            return Object.assign({}, state, {asteroids: []});
         case actionTypes.UPDATE:
             asteroids = state.asteroids.map(function(asteroid) {
                 return {

@@ -2,25 +2,30 @@ import * as actionTypes from '../constants/actionTypes';
 import * as gameConfig from '../constants/gameConfig.js';
 import {calcXDist, calcYDist} from '../helpers/gameHelpers.js';
 
-export default function spaceship(state = {
+const resetSpaceship = {
     rot: undefined,
     pos: {x: undefined, y: undefined},
     radius: undefined,
     rotSpeed: undefined,
     speed: undefined
-}, action) {
+}
+const initSpaceship = {
+    rot: 0,
+    pos: {
+        x: Math.round(gameConfig.GAME_WIDTH / 2),
+        y: Math.round(gameConfig.GAME_HEIGHT / 2)
+    },
+    radius: gameConfig.SPACESHIP_RADIUS,
+    rotSpeed: 0,
+    speed: 0
+}
+
+export default function spaceship(state = (() => {
+    return Object.assign({}, state, resetSpaceship)
+})(), action) {
     switch (action.type) {
         case actionTypes.START:
-            return Object.assign({}, state, {
-                rot: 0,
-                pos: {
-                    x: Math.round(gameConfig.GAME_WIDTH / 2),
-                    y: Math.round(gameConfig.GAME_HEIGHT / 2)
-                },
-                radius: gameConfig.SPACESHIP_RADIUS,
-                rotSpeed: 0,
-                speed: 0
-            });
+            return Object.assign({}, state, initSpaceship);
         case actionTypes.ROTATE_RIGHT:
             return Object.assign({}, state, {
                 rotSpeed: gameConfig.SPACESHIP_ROT_SPEED
@@ -41,6 +46,8 @@ export default function spaceship(state = {
             return Object.assign({}, state, {
                 rotSpeed: 0
             });
+        case actionTypes.GAME_OVER:
+            return Object.assign({}, state, resetSpaceship);
         case actionTypes.UPDATE:
             return Object.assign({}, state, {
                 pos: {

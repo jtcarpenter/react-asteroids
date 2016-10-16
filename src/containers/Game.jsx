@@ -15,7 +15,8 @@ import {
     stopRotation,
     fire,
     update,
-    asteroidHitTest
+    asteroidHitTest,
+    spaceshipHitTest
 } from '../actions/gameActions.js';
 
 class Game extends React.Component {
@@ -50,6 +51,7 @@ class Game extends React.Component {
 
     updateGame() {
         this.props.dispatch(asteroidHitTest());
+        this.props.dispatch(spaceshipHitTest());
         this.props.dispatch(update());
         requestAnimationFrame(this.updateGame.bind(this));
     }
