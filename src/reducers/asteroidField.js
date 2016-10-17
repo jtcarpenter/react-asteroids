@@ -2,6 +2,21 @@ import * as actionTypes from '../constants/actionTypes';
 import * as gameConfig from '../constants/gameConfig.js';
 import {calcXDist, calcYDist} from '../helpers/gameHelpers.js';
 
+function newAsteroid(maxAcceleration) {
+    var xEdge = !!Math.round(Math.random());
+    var yEdge = !xEdge;
+    var asteroid =  {
+        rot: Math.round(Math.random() * 360),
+        pos: {
+            x: xEdge ? 0 : Math.round(Math.random() * gameConfig.GAME_WIDTH),
+            y: yEdge ? 0 : Math.round(Math.random() * gameConfig.GAME_HEIGHT)
+        },
+        radius: gameConfig.ASTEROID_RADIUS,
+        speed: Math.ceil(Math.random() * maxAcceleration)
+    }
+    return asteroid;
+}
+
 export default function asteroidField(state = {
     maxAcceleration: gameConfig.ASTEROID_START_MAX_ACCL,
     asteroids: []
@@ -10,22 +25,9 @@ export default function asteroidField(state = {
         case actionTypes.START:
             let asteroids = [...state.asteroids];
             while(asteroids.length < gameConfig.ASTEROID_START_COUNT) {
-
-                // make sure asteroid starts on one of the edges so if can'the
-                // occupy same space as spacehip at shart
-                // TODO: this should  be based on current spaceship pos
-                // this will be necessary when new asteroids are generated
                 let xEdge = !!Math.round(Math.random());
                 let yEdge = !xEdge;
-                asteroids.push({
-                    rot: Math.round(Math.random() * 360),
-                    pos: {
-                        x: xEdge ? 0 : Math.round(Math.random() * gameConfig.GAME_WIDTH),
-                        y: yEdge ? 0 : Math.round(Math.random() * gameConfig.GAME_HEIGHT)
-                    },
-                    radius: gameConfig.ASTEROID_RADIUS,
-                    speed: Math.ceil(Math.random() * state.maxAcceleration)
-                });
+                asteroids.push(newAsteroid(gameConfig.ASTEROID_START_MAX_ACCL));
             }
             return Object.assign({}, state, {asteroids: asteroids});
         case actionTypes.GAME_OVER:
@@ -46,10 +48,16 @@ export default function asteroidField(state = {
             });
             return Object.assign({}, state, {asteroids: asteroids});
         case actionTypes.ASTEROID_HIT:
+            let maxAcceleration = state.maxAcceleration +
+                gameConfig.ASTEROID_START_MAX_ACCL_INCR;
             asteroids = state.asteroids.filter(function(asteroid, index) {
                 return index !== action.asteroid.index
             });
-            return Object.assign({}, state, {asteroids: asteroids});
+            asteroids.push(newAsteroid(maxAcceleration));
+            return Object.assign({}, state, {
+                asteroids: asteroids,
+                maxAcceleration: maxAcceleration
+            });
         default:
             return state;
     }

@@ -147,7 +147,7 @@ describe('asteroidField reducer', () => {
                     asteroid: {speed: 10, rot: 10, pos: {x: 10, y: 10}, index: 0}
                 },
             );
-            expect(actual.asteroids.length).to.equal(1);
+            expect(actual.asteroids.length).to.equal(2);
             expect(actual.asteroids[0].pos.x).to.equal(10);
         });
     });
