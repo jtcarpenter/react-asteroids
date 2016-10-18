@@ -13,4 +13,3 @@ export const ASTEROID_RADIUS = 50;
 export const CONSTELLATION_COUNT = 25;
 export const CONSTELLATION_MIN_RADIUS = 0.5;
 export const CONSTELLATION_MAX_RADIUS = 1.5;
-export const MESSAGE_GAME_OVER = 'game over!';

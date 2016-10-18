@@ -27,6 +27,14 @@ describe('dashboard reducer', () => {
         it(`should set game state to ${gameStates.PLAYING}`, () => {
             expect(actual.gameState).to.equal(gameStates.PLAYING);
         });
+
+        it(`should set message to null`, () => {
+            expect(actual.message).to.be.null;
+        });
+
+        it(`should set score to 0`, () => {
+            expect(actual.score).to.equal(0);
+        });
     });
 
     describe('GAME_OVER action type', () => {
@@ -48,8 +56,8 @@ describe('dashboard reducer', () => {
             expect(actual.gameState).to.equal(gameStates.STOPPED);
         });
 
-        it(`should set message to ${gameConfig.MESSAGE}`, () => {
-            expect(actual.message).to.equal(gameConfig.MESSAGE_GAME_OVER);
+        it(`should set message to a string`, () => {
+            expect(actual.message).to.be.a('string');
         });
     });
 });

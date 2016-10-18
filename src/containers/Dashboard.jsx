@@ -87,7 +87,7 @@ class Dashboard extends React.Component {
                 &#x21E8; to move
                 [SPACE] to shoot
             </div>
-             <p style={messagestyle}>{dashboard.message}</p>
+            <p style={messagestyle}>{dashboard.message}</p>
             <button
                 onClick={this.handleClick}
                 style={playBtnStyle}>
