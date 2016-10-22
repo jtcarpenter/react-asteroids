@@ -24,6 +24,14 @@ describe('asteroidField reducer', () => {
             );
             expect(actual.asteroids.length).to.equal(gameConfig.ASTEROID_START_COUNT);
         });
+
+        it('should reset maxAcceleration', () => {
+            state.maxAcceleration = 2;
+            actual = asteroidField(state,
+                {type: actionTypes.START}
+            );
+            expect(actual.maxAcceleration).to.equal(gameConfig.ASTEROID_START_MAX_ACCL);
+        });
     });
 
     describe('GAME_OVER action type', () => {

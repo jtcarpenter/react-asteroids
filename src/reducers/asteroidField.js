@@ -29,7 +29,10 @@ export default function asteroidField(state = {
                 let yEdge = !xEdge;
                 asteroids.push(newAsteroid(gameConfig.ASTEROID_START_MAX_ACCL));
             }
-            return Object.assign({}, state, {asteroids: asteroids});
+            return Object.assign({}, state, {
+                maxAcceleration: gameConfig.ASTEROID_START_MAX_ACCL,
+                asteroids: asteroids
+            });
         case actionTypes.GAME_OVER:
             return Object.assign({}, state, {asteroids: []});
         case actionTypes.UPDATE:
