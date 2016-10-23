@@ -106,8 +106,8 @@ describe('gameActions', () => {
                 laser: laser
             });
             const dispatch = sinon.spy();
-            var {index = 0, pos: {x, y}} = asteroidField.asteroids[0];
-            var asteroid = {index, pos: {x, y}};
+            var {index = 0, pos: {x, y}, speed} = asteroidField.asteroids[0];
+            var asteroid = {index, pos: {x, y}, speed};
             var {index = 0, pos: {x, y}} = laser.bolts[0];
             var laserBolt = {index, pos: {x, y}};
             const expectedAction = {

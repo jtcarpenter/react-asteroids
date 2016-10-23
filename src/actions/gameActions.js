@@ -70,8 +70,8 @@ export function asteroidHitTest() {
         var {asteroidField, laser} = getState();
 
         for (let i = 0, l = asteroidField.asteroids.length; i < l; i++) {
-            let {radius, pos: {x, y}} = asteroidField.asteroids[i];
-            let a = {radius, pos: {x, y}};
+            let {radius, pos: {x, y}, speed} = asteroidField.asteroids[i];
+            let a = {radius, pos: {x, y}, speed};
             for (let j = 0, m = laser.bolts.length; j < m; j++) {
                 let {radius, pos: {x, y}} = laser.bolts[j];
                 let b = {radius, pos: {x, y}};
@@ -82,6 +82,7 @@ export function asteroidHitTest() {
                 )) {
                     dispatch(asteroidHit({
                         index: i,
+                        speed: a.speed,
                         pos: {
                             x: a.pos.x,
                             y: a.pos.y

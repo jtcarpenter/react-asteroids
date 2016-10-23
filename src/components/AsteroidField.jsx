@@ -4,6 +4,7 @@ import {Layer, Rect} from 'react-konva';
 import Spaceship from '../components/Spaceship.jsx';
 import LaserBolt from '../components/LaserBolt.jsx';
 import Asteroid from '../components/Asteroid.jsx';
+import Fragment from '../components/Fragment.jsx';
 
 class AsteroidField extends React.Component {
     render() {
@@ -12,6 +13,7 @@ class AsteroidField extends React.Component {
             spaceship,
             laser,
             asteroidField,
+            debris,
             width,
             height
         } = this.props;
@@ -42,6 +44,14 @@ class AsteroidField extends React.Component {
                     radius={asteroid.radius}
                     pos={asteroid.pos}>
                 </Asteroid>
+            })}
+            {debris.fragments.map((fragment, index) => {
+                return <Fragment
+                    key={Math.random()}
+                    rot={fragment.rot}
+                    radius={fragment.radius}
+                    pos={fragment.pos}>
+                </Fragment>
             })}
         </Layer>
     }

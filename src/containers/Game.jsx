@@ -75,7 +75,8 @@ class Game extends React.Component {
         var {
             spaceship,
             laser,
-            asteroidField
+            asteroidField,
+            debris
         } = this.props;
 
         var styles = {
@@ -104,6 +105,7 @@ class Game extends React.Component {
                     spaceship={spaceship}
                     laser={laser}
                     asteroidField={asteroidField}
+                    debris={debris}
                     width={gameConfig.GAME_WIDTH}
                     height={gameConfig.GAME_HEIGHT}>
                 </AsteroidField>
@@ -129,4 +131,5 @@ export default connect((state) =>({
     spaceship: state.spaceship,
     laser: state.laser,
     asteroidField: state.asteroidField,
+    debris: state.debris
 }))(Game);
