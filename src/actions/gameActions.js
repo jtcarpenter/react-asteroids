@@ -58,9 +58,10 @@ export function asteroidHit(asteroid, laserBolt) {
     }
 }
 
-export function gameOver() {
+export function gameOver(spaceship) {
     return {
-        type: actionTypes.GAME_OVER
+        type: actionTypes.GAME_OVER,
+        spaceship: spaceship
     }
 }
 
@@ -103,12 +104,20 @@ export function asteroidHitTest() {
 export function spaceshipHitTest() {
     return (dispatch, getState) => {
         var {spaceship, asteroidField} = getState();
+        var {radius, pos: {x, y}, speed} = spaceship;
+        let s = {radius, pos: {x, y}, speed};
         for (let i = 0, l = asteroidField.asteroids.length; i < l; i++) {
             if (hitTest(
                 asteroidField.asteroids[i],
                 spaceship
             )) {
-                dispatch(gameOver());
+                dispatch(gameOver({
+                    speed: s.speed,
+                    pos: {
+                        x: s.pos.x,
+                        y: s.pos.y
+                    }
+                }));
             }
         }
     }

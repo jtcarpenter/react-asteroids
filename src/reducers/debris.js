@@ -2,7 +2,7 @@ import * as actionTypes from '../constants/actionTypes';
 import * as gameConfig from '../constants/gameConfig.js';
 import {calcXDist, calcYDist, randomNumInRange} from '../helpers/gameHelpers.js';
 
-function newFragment(x, y, asteroidSpeed) {
+function newFragment(x, y) {
     var fragment =  {
         rot: Math.round(Math.random() * 360),
         pos: {
@@ -10,7 +10,7 @@ function newFragment(x, y, asteroidSpeed) {
             y: y
         },
         radius: gameConfig.ASTEROID_FRAGMENT_RADIUS,
-        speed: asteroidSpeed * 10
+        speed: gameConfig.ASTEROID_START_SPEED
     }
     return fragment;
 }
@@ -18,25 +18,34 @@ function newFragment(x, y, asteroidSpeed) {
 export default function debris(state = {
     fragments: []
 }, action) {
+    var fragments;
     switch (action.type) {
         case actionTypes.START:
             return Object.assign({}, state, {
                 fragments: []
             });
         case actionTypes.ASTEROID_HIT:
-            let fragments = [...state.fragments];
+            fragments = [...state.fragments];
             while(fragments.length < gameConfig.ASTEROID_FRAGMENT_COUNT) {
                 fragments.push(newFragment(
                     action.asteroid.pos.x,
-                    action.asteroid.pos.y,
-                    action.asteroid.speed
+                    action.asteroid.pos.y
                 ));
             }
             return Object.assign({}, state, {
                 fragments: fragments
             });
         case actionTypes.GAME_OVER:
-            return Object.assign({}, state, {});
+            fragments = [...state.fragments];
+            while(fragments.length < gameConfig.SPACESHIP_FRAGMENT_COUNT) {
+                fragments.push(newFragment(
+                    action.spaceship.pos.x,
+                    action.spaceship.pos.y
+                ));
+            }
+            return Object.assign({}, state, {
+                fragments: fragments
+            });
         case actionTypes.UPDATE:
 
             // recalculate fragment positions

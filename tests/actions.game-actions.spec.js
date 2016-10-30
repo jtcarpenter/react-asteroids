@@ -73,10 +73,12 @@ describe('gameActions', () => {
     });
 
     it('should create an action with type GAME_OVER', () => {
+        const spaceship = {};
         const expectedAction = {
-            type: actionTypes.GAME_OVER
+            type: actionTypes.GAME_OVER,
+            spaceship: spaceship
         };
-        expect(gameActions.gameOver()).to.eql(expectedAction);
+        expect(gameActions.gameOver(spaceship)).to.eql(expectedAction);
     });
 
     describe('asteroidHitTest', () => {
@@ -149,7 +151,8 @@ describe('gameActions', () => {
             };
             spaceship = {
                 radius: 10,
-                pos: {x: 0, y: 19}
+                pos: {x: 0, y: 19},
+                speed: 10
             };
         });
 
@@ -162,7 +165,11 @@ describe('gameActions', () => {
             var {index = 0, pos: {x, y}} = asteroidField.asteroids[0];
             var asteroid = {index, pos: {x, y}};
             const expectedAction = {
-                type: actionTypes.GAME_OVER
+                type: actionTypes.GAME_OVER,
+                spaceship: {
+                    pos: {x: spaceship.pos.x, y: spaceship.pos.y},
+                    speed: spaceship.speed
+                }
             };
             gameActions.spaceshipHitTest()(dispatch, getState);
 
