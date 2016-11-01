@@ -52,8 +52,8 @@ describe('laser reducer', () => {
             };
         });
 
-        it(`should set x and y by distance of ${SPEED} when rot is 0`, () => {
-            state.bolts = [{rot: 0, pos: {x: 0, y: 0}}];
+        it(`should set x and y by distance of ${SPEED} when dir is 0`, () => {
+            state.bolts = [{dir: 0, pos: {x: 0, y: 0}}];
             actual = laser(state,
                 {type: actionTypes.UPDATE}
             );
@@ -61,8 +61,8 @@ describe('laser reducer', () => {
             expect(actual.bolts[0].pos.y).to.equal(0);
         });
 
-        it(`should set x and y by distance of ${SPEED} when rot is 45`, () => {
-            state.bolts = [{rot: 45, pos: {x: 0, y: 0}}];
+        it(`should set x and y by distance of ${SPEED} when dir is 45`, () => {
+            state.bolts = [{dir: 45, pos: {x: 0, y: 0}}];
             actual = laser(state,
                 {type: actionTypes.UPDATE}
             );

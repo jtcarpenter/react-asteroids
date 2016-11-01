@@ -2,15 +2,19 @@ import * as actionTypes from '../constants/actionTypes';
 import * as gameConfig from '../constants/gameConfig.js';
 import {calcXDist, calcYDist, randomNumInRange} from '../helpers/gameHelpers.js';
 
-function newFragment(x, y) {
+function newFragment(x, y, radius, speed, rotSpeed) {
+    var rot = Math.round(Math.random() * 360);
+    var dir = Math.round(Math.random() * 360);
     var fragment =  {
-        rot: Math.round(Math.random() * 360),
+        rot: rot,
+        dir: dir,
         pos: {
             x: x,
             y: y
         },
-        radius: gameConfig.ASTEROID_FRAGMENT_RADIUS,
-        speed: gameConfig.ASTEROID_START_SPEED
+        radius: radius,
+        speed: speed,
+        rotSpeed: rotSpeed
     }
     return fragment;
 }
@@ -29,7 +33,10 @@ export default function debris(state = {
             while(fragments.length < gameConfig.ASTEROID_FRAGMENT_COUNT) {
                 fragments.push(newFragment(
                     action.asteroid.pos.x,
-                    action.asteroid.pos.y
+                    action.asteroid.pos.y,
+                    gameConfig.ASTEROID_FRAGMENT_RADIUS,
+                    gameConfig.ASTEROID_FRAGMENT_SPEED,
+                    gameConfig.ASTEROID_FRAGMENT_ROT_SPEED
                 ));
             }
             return Object.assign({}, state, {
@@ -40,7 +47,10 @@ export default function debris(state = {
             while(fragments.length < gameConfig.SPACESHIP_FRAGMENT_COUNT) {
                 fragments.push(newFragment(
                     action.spaceship.pos.x,
-                    action.spaceship.pos.y
+                    action.spaceship.pos.y,
+                    gameConfig.SPACESHIP_FRAGMENT_RADIUS,
+                    gameConfig.SPACESHIP_FRAGMENT_SPEED,
+                    gameConfig.SPACESHIP_FRAGMENT_ROT_SPEED
                 ));
             }
             return Object.assign({}, state, {
@@ -52,12 +62,14 @@ export default function debris(state = {
             fragments = state.fragments.map(function(fragment) {
                 return {
                     pos: {
-                        x: fragment.pos.x + calcXDist(fragment.rot, fragment.speed),
-                        y: fragment.pos.y + calcYDist(fragment.rot, fragment.speed)
+                        x: fragment.pos.x + calcXDist(fragment.dir, fragment.speed),
+                        y: fragment.pos.y + calcYDist(fragment.dir, fragment.speed)
                     },
                     radius: fragment.radius,
-                    rot: fragment.rot,
-                    speed: fragment.speed
+                    rot: fragment.rot + fragment.rotSpeed,
+                    dir: fragment.dir,
+                    speed: fragment.speed,
+                    rotSpeed: fragment.rotSpeed
                 }
             })
 

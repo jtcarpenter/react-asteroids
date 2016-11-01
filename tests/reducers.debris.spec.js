@@ -40,7 +40,7 @@ describe('debris reducer', () => {
             actual = debris(state,
                 {
                     type: actionTypes.ASTEROID_HIT,
-                    asteroid: {speed: 10, rot: 10, pos: {x: 10, y: 10}, index: 0}
+                    asteroid: {speed: 10, rot: 10, dir: 10, pos: {x: 10, y: 10}, index: 0}
                 }
             );
             expect(actual.fragments.length).to.equal(gameConfig.ASTEROID_FRAGMENT_COUNT);
@@ -61,12 +61,12 @@ describe('debris reducer', () => {
         beforeEach(() => {
             state = {
                 fragments: [
-                    {speed: SPEED, rot: 0, pos: {x: X_POS, y: Y_POS}}
+                    {speed: SPEED, rot: 0, dir: 0, pos: {x: X_POS, y: Y_POS}}
                 ]
             };
         });
 
-        it(`should set x and y by distance of ${SPEED} when rot is 0`, () => {
+        it(`should set x and y by distance of ${SPEED} when dir is 0`, () => {
             actual = debris(state,
                 {type: actionTypes.UPDATE}
             );

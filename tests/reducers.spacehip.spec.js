@@ -9,6 +9,7 @@ import * as gameConfig from '../src/constants/gameConfig.js';
 describe('spaceship reducer', () => {
 
     const stoppedSpaceship = {
+        dir: undefined,
         rot: undefined,
         pos: {x: undefined, y: undefined},
         radius: undefined,
@@ -16,6 +17,7 @@ describe('spaceship reducer', () => {
         speed: undefined
     }
     const startedSpaceship = {
+        dir: 0,
         rot: 0,
         pos: {
             x: Math.round(gameConfig.GAME_WIDTH / 2),
@@ -165,13 +167,14 @@ describe('spaceship reducer', () => {
 
         beforeEach(() => {
             state = {
+                dir: 0,
                 rot: 0,
                 pos: {x: X_POS, y: Y_POS},
                 speed: SPEED
             };
         });
 
-        it(`should set x and y by distance of ${SPEED} when rot is 0`, () => {
+        it(`should set x and y by distance of ${SPEED} when dir is 0`, () => {
             actual = spaceship(state,
                 {type: actionTypes.UPDATE}
             );
@@ -179,8 +182,8 @@ describe('spaceship reducer', () => {
             expect(actual.pos.y).to.equal(Y_POS);
         });
 
-        it(`should set x and y by distance of ${SPEED} when rot is 45`, () => {
-            state.rot = 45;
+        it(`should set x and y by distance of ${SPEED} when dir is 45`, () => {
+            state.dir = 45;
             actual = spaceship(state,
                 {type: actionTypes.UPDATE}
             );
@@ -200,7 +203,7 @@ describe('spaceship reducer', () => {
         });
 
         it('it should wrap when leaving bottom of game area', () => {
-            state.rot = 90;
+            state.dir = 90;
             state.pos.y = gameConfig.GAME_HEIGHT;
             actual = spaceship(state,
                 {type: actionTypes.UPDATE}
@@ -210,7 +213,7 @@ describe('spaceship reducer', () => {
         });
 
         it('it should wrap when leaving left of game area', () => {
-            state.rot = 180;
+            state.dir = 180;
             state.pos.x = 0;
             actual = spaceship(state,
                 {type: actionTypes.UPDATE}
@@ -220,7 +223,7 @@ describe('spaceship reducer', () => {
         });
 
         it('it should wrap when leaving top of game area', () => {
-            state.rot = 270;
+            state.dir = 270;
             state.pos.y = 0;
             actual = spaceship(state,
                 {type: actionTypes.UPDATE}

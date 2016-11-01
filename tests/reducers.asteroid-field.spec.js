@@ -42,7 +42,7 @@ describe('asteroidField reducer', () => {
         beforeEach(() => {
             state = {
                 asteroids: [
-                    {speed: 10, rot: 0, pos: {x: 0, y: 0}}
+                    {speed: 10, dir: 0, pos: {x: 0, y: 0}}
                 ]
             };
         });
@@ -65,12 +65,12 @@ describe('asteroidField reducer', () => {
         beforeEach(() => {
             state = {
                 asteroids: [
-                    {speed: SPEED, rot: 0, pos: {x: X_POS, y: Y_POS}}
+                    {speed: SPEED, dir: 0, pos: {x: X_POS, y: Y_POS}}
                 ]
             };
         });
 
-        it(`should set x and y by distance of ${SPEED} when rot is 0`, () => {
+        it(`should set x and y by distance of ${SPEED} when dir is 0`, () => {
             actual = asteroidField(state,
                 {type: actionTypes.UPDATE}
             );
@@ -78,8 +78,8 @@ describe('asteroidField reducer', () => {
             expect(actual.asteroids[0].pos.y).to.equal(Y_POS);
         });
 
-        it(`should set x and y by distance of ${SPEED} when rot is 45`, () => {
-            state.asteroids[0].rot = 45;
+        it(`should set x and y by distance of ${SPEED} when dir is 45`, () => {
+            state.asteroids[0].dir = 45;
             actual = asteroidField(state,
                 {type: actionTypes.UPDATE}
             );
@@ -101,7 +101,7 @@ describe('asteroidField reducer', () => {
 
         it('should wrap when leaving bottom of game area', () => {
             // facing down
-            state.asteroids[0].rot = 90;
+            state.asteroids[0].dir = 90;
             state.asteroids[0].pos.y = gameConfig.GAME_HEIGHT;
             actual = asteroidField(state,
                 {type: actionTypes.UPDATE}
@@ -112,7 +112,7 @@ describe('asteroidField reducer', () => {
 
         it('should wrap when leaving left of game area', () => {
             // facing left
-            state.asteroids[0].rot = 180;
+            state.asteroids[0].dir = 180;
             state.asteroids[0].pos.x = 0;
             actual = asteroidField(state,
                 {type: actionTypes.UPDATE}
@@ -123,7 +123,7 @@ describe('asteroidField reducer', () => {
 
         it('should wrap when leaving top of game area', () => {
             // facing up
-            state.asteroids[0].rot = 270;
+            state.asteroids[0].dir = 270;
             state.asteroids[0].pos.y = 0;
             actual = asteroidField(state,
                 {type: actionTypes.UPDATE}
@@ -141,8 +141,8 @@ describe('asteroidField reducer', () => {
         beforeEach(() => {
             state = {
                 asteroids: [
-                    {speed: 10, rot: 10, pos: {x: 0, y: 0}},
-                    {speed: 10, rot: 10, pos: {x: 10, y: 10}}
+                    {speed: 10, dir: 10, pos: {x: 0, y: 0}},
+                    {speed: 10, dir: 10, pos: {x: 10, y: 10}}
                 ]
             };
         });
@@ -152,7 +152,7 @@ describe('asteroidField reducer', () => {
             actual = asteroidField(state,
                 {
                     type: actionTypes.ASTEROID_HIT,
-                    asteroid: {speed: 10, rot: 10, pos: {x: 10, y: 10}, index: 0}
+                    asteroid: {speed: 10, dir: 10, pos: {x: 10, y: 10}, index: 0}
                 },
             );
             expect(actual.asteroids.length).to.equal(2);

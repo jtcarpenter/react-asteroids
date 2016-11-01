@@ -5,8 +5,10 @@ import {calcXDist, calcYDist} from '../helpers/gameHelpers.js';
 function newAsteroid(maxAcceleration) {
     var xEdge = !!Math.round(Math.random());
     var yEdge = !xEdge;
+    var rot = Math.round(Math.random() * 360);
     var asteroid =  {
-        rot: Math.round(Math.random() * 360),
+        dir: rot,
+        rot: rot,
         pos: {
             x: xEdge ? 0 : Math.round(Math.random() * gameConfig.GAME_WIDTH),
             y: yEdge ? 0 : Math.round(Math.random() * gameConfig.GAME_HEIGHT)
@@ -39,13 +41,14 @@ export default function asteroidField(state = {
             asteroids = state.asteroids.map(function(asteroid) {
                 return {
                     pos: {
-                        x: (asteroid.pos.x + calcXDist(asteroid.rot, asteroid.speed) +
+                        x: (asteroid.pos.x + calcXDist(asteroid.dir, asteroid.speed) +
                             gameConfig.GAME_WIDTH) % gameConfig.GAME_WIDTH,
-                        y: (asteroid.pos.y + calcYDist(asteroid.rot, asteroid.speed) +
+                        y: (asteroid.pos.y + calcYDist(asteroid.dir, asteroid.speed) +
                             gameConfig.GAME_HEIGHT) % gameConfig.GAME_HEIGHT
                     },
                     radius: asteroid.radius,
                     rot: asteroid.rot,
+                    dir: asteroid.rot,
                     speed: asteroid.speed
                 }
             });

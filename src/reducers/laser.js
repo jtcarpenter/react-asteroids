@@ -11,6 +11,7 @@ export default function laser(state = {
         case actionTypes.FIRE:
             bolts = [...state.bolts];
             bolts.push({
+                dir: action.laserOrigin.rot,
                 rot: action.laserOrigin.rot,
                 pos: {x: action.laserOrigin.pos.x, y: action.laserOrigin.pos.y}
             });
@@ -21,11 +22,12 @@ export default function laser(state = {
             bolts = state.bolts.map(function(bolt) {
                 return {
                     pos: {
-                        x: bolt.pos.x + calcXDist(bolt.rot, state.speed),
-                        y: bolt.pos.y + calcYDist(bolt.rot, state.speed)
+                        x: bolt.pos.x + calcXDist(bolt.dir, state.speed),
+                        y: bolt.pos.y + calcYDist(bolt.dir, state.speed)
                     },
                     radius: gameConfig.LASER_BOLT_RADIUS,
-                    rot: bolt.rot
+                    rot: bolt.rot,
+                    dir: bolt.rot
                 }
             })
 
