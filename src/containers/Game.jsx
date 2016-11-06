@@ -1,7 +1,7 @@
-import React, {PropTypes, Component} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider, connect} from 'react-redux';
-import {Rect, Stage} from 'react-konva';
+import {connect} from 'react-redux';
+import {Stage} from 'react-konva';
 import Constellation from '../containers/Constellation.jsx';
 import AsteroidField from '../components/AsteroidField.jsx';
 import Dashboard from '../containers/Dashboard.jsx';
@@ -29,6 +29,7 @@ class Game extends React.Component {
     }
 
     handleKeyDown(event) {
+        var rot, x, y, laserOrigin;
         switch(event.keyCode) {
             case keyCodes.LEFT:
                 this.props.dispatch(rotateLeft());
@@ -40,8 +41,8 @@ class Game extends React.Component {
                 this.props.dispatch(forward());
                 break;
             case keyCodes.SPACE:
-                let {rot, pos: {x, y}} = this.props.spaceship;
-                let laserOrigin = {rot, pos: {x, y}};
+                ({rot, pos: {x, y}} = this.props.spaceship);
+                laserOrigin = {rot, pos: {x, y}};
                 this.props.dispatch(fire(laserOrigin));
                 break;
             default:
@@ -81,8 +82,8 @@ class Game extends React.Component {
 
         var styles = {
             position: 'relative',
-            width: gameConfig.GAME_WIDTH + 'px',
-            height: gameConfig.GAME_HEIGHT + 'px',
+            width: `${gameConfig.GAME_WIDTH}px`,
+            height: `${gameConfig.GAME_HEIGHT}px`,
             margin: '20px auto'
         }
 
@@ -127,7 +128,7 @@ class Game extends React.Component {
     }
 }
 
-export default connect((state) =>({
+export default connect((state) => ({
     spaceship: state.spaceship,
     laser: state.laser,
     asteroidField: state.asteroidField,

@@ -27,11 +27,13 @@ export default function constellation(state = {
         case actionTypes.UPDATE:
             stars = state.stars.map(function(star) {
                 var ran = Math.random();
-                star.opacity = ran > 0.99 ? 1 - star.opacity : star.opacity;
+                star.opacity = ran > 0.99
+                    ? 1 - star.opacity
+                    : star.opacity;
                 return star;
             });
             return Object.assign({}, state, {stars: stars});
         default:
             return state;
     }
-};
+}

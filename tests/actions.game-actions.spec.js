@@ -108,10 +108,11 @@ describe('gameActions', () => {
                 laser: laser
             });
             const dispatch = sinon.spy();
-            var {index = 0, pos: {x, y}, speed} = asteroidField.asteroids[0];
-            var asteroid = {index, pos: {x, y}, speed};
-            var {index = 0, pos: {x, y}} = laser.bolts[0];
-            var laserBolt = {index, pos: {x, y}};
+            var index, x, y, speed, asteroid, laserBolt;
+            ({index = 0, pos: {x, y}, speed} = asteroidField.asteroids[0]);
+            asteroid = {index, pos: {x, y}, speed};
+            ({index = 0, pos: {x, y}} = laser.bolts[0]);
+            laserBolt = {index, pos: {x, y}};
             const expectedAction = {
                 type: actionTypes.ASTEROID_HIT,
                 asteroid: asteroid,
@@ -162,8 +163,6 @@ describe('gameActions', () => {
                 spaceship: spaceship
             });
             const dispatch = sinon.spy();
-            var {index = 0, pos: {x, y}} = asteroidField.asteroids[0];
-            var asteroid = {index, pos: {x, y}};
             const expectedAction = {
                 type: actionTypes.GAME_OVER,
                 spaceship: {

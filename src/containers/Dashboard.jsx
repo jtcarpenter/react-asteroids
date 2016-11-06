@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import {Provider, connect} from 'react-redux';
+import React from 'react';
+import {connect} from 'react-redux';
 import Radium from 'radium';
 import {
     start
@@ -61,7 +60,7 @@ class Dashboard extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(event) {
+    handleClick() {
         this.props.dispatch(start());
         this.props.onStart();
     }
@@ -70,12 +69,13 @@ class Dashboard extends React.Component {
 
         var {
             width,
-            height,
             dashboard
         } = this.props;
 
-        var playBtnStyle = dashboard.gameState === gameStates.STOPPED ?
-            playBtnStyles.show: playBtnStyles.hide;
+        var playBtnStyle = playBtnStyles.hide;
+        if (dashboard.gameState === gameStates.STOPPED) {
+            playBtnStyle = playBtnStyles.show;
+        }
 
         return <div
             style={style}>
@@ -97,6 +97,6 @@ class Dashboard extends React.Component {
     }
 }
 
-export default connect((state) =>({
+export default connect((state) => ({
     dashboard: state.dashboard
 }))(Radium(Dashboard));

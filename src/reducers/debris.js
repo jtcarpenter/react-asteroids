@@ -1,6 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 import * as gameConfig from '../constants/gameConfig.js';
-import {calcXDist, calcYDist, randomNumInRange} from '../helpers/gameHelpers.js';
+import {calcXDist, calcYDist} from '../helpers/gameHelpers.js';
 
 function newFragment(x, y, radius, speed, rotSpeed) {
     var rot = Math.round(Math.random() * 360);
@@ -74,7 +74,7 @@ export default function debris(state = {
             })
 
             // filter out all bolts which have left the game area
-            .filter(function(fragment, index) {
+            .filter(function(fragment) {
                 return  fragment.pos.x >= 0 &&
                         fragment.pos.x <= (gameConfig.GAME_WIDTH) &&
                         fragment.pos.y >= 0 &&
@@ -85,4 +85,4 @@ export default function debris(state = {
         default:
             return state;
     }
-};
+}

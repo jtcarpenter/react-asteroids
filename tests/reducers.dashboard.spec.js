@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-    renderIntoDocument,
-} from 'react-addons-test-utils';
 import dashboard from '../src/reducers/dashboard.js';
 import * as actionTypes from '../src/constants/actionTypes.js';
-import * as gameConfig from '../src/constants/gameConfig.js';
 import * as gameStates from '../src/constants/gameStates.js';
 
 describe('dashboard reducer', () => {

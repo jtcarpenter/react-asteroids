@@ -1,5 +1,4 @@
 import * as actionTypes from '../constants/actionTypes';
-import * as gameConfig from '../constants/gameConfig.js';
 import * as gameStates from '../constants/gameStates.js';
 
 export default function dashboard(state = {
@@ -16,7 +15,9 @@ export default function dashboard(state = {
             });
         case actionTypes.GAME_OVER:
             return Object.assign({}, state, {
-                message: `Game over! You hit ${state.score} asteroid${state.score !== 1? 's':''}`,
+                message: `Game over! You hit ${state.score} asteroid${state.score !== 1
+                    ? 's'
+                    :''}`,
                 gameState: gameStates.STOPPED
             });
         case actionTypes.ASTEROID_HIT:
@@ -26,4 +27,4 @@ export default function dashboard(state = {
         default:
             return state;
     }
-};
+}

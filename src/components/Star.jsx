@@ -1,5 +1,4 @@
-import React, {PropTypes, Component} from 'react';
-import {Provider, connect} from 'react-redux';
+import React from 'react';
 import {Circle} from 'react-konva';
 
 class Star extends React.Component {

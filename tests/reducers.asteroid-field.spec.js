@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-    renderIntoDocument,
-} from 'react-addons-test-utils';
 import asteroidField from '../src/reducers/asteroidField.js';
 import * as actionTypes from '../src/constants/actionTypes.js';
 import * as gameConfig from '../src/constants/gameConfig.js';
@@ -153,7 +150,7 @@ describe('asteroidField reducer', () => {
                 {
                     type: actionTypes.ASTEROID_HIT,
                     asteroid: {speed: 10, dir: 10, pos: {x: 10, y: 10}, index: 0}
-                },
+                }
             );
             expect(actual.asteroids.length).to.equal(2);
             expect(actual.asteroids[0].pos.x).to.equal(10);

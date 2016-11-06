@@ -1,6 +1,4 @@
-import React, {PropTypes, Component} from 'react';
-import * as types from '../constants/actionTypes';
-import {Provider, connect} from 'react-redux';
+import React from 'react';
 import {Line} from 'react-konva';
 
 class Spaceship extends React.Component {

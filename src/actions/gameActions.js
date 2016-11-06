@@ -1,5 +1,5 @@
 import * as actionTypes from '../constants/actionTypes';
-import {hitTest, findHit} from '../helpers/gameHelpers';
+import {hitTest} from '../helpers/gameHelpers';
 
 export function start() {
     return {

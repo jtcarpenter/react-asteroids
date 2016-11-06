@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import {Layer, Rect} from 'react-konva';
 import Spaceship from '../components/Spaceship.jsx';
 import LaserBolt from '../components/LaserBolt.jsx';
@@ -29,7 +28,7 @@ class AsteroidField extends React.Component {
                 radius={spaceship.radius}
                 laser={laser}
             />
-            {laser.bolts.map((bolt, index) => {
+            {laser.bolts.map((bolt) => {
                 return <LaserBolt
                     key={Math.random()}
                     rot={bolt.rot}
@@ -37,7 +36,7 @@ class AsteroidField extends React.Component {
                     pos={bolt.pos}>
                 </LaserBolt>
             })}
-            {asteroidField.asteroids.map((asteroid, index) => {
+            {asteroidField.asteroids.map((asteroid) => {
                 return <Asteroid
                     key={Math.random()}
                     rot={asteroid.rot}
@@ -45,7 +44,7 @@ class AsteroidField extends React.Component {
                     pos={asteroid.pos}>
                 </Asteroid>
             })}
-            {debris.fragments.map((fragment, index) => {
+            {debris.fragments.map((fragment) => {
                 return <Fragment
                     key={Math.random()}
                     rot={fragment.rot}

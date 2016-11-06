@@ -25,6 +25,7 @@ const initSpaceship = {
 export default function spaceship(state = (() => {
     return Object.assign({}, state, resetSpaceship)
 })(), action) {
+    var rot;
     switch (action.type) {
         case actionTypes.START:
             return Object.assign({}, state, initSpaceship);
@@ -51,7 +52,7 @@ export default function spaceship(state = (() => {
         case actionTypes.GAME_OVER:
             return Object.assign({}, state, resetSpaceship);
         case actionTypes.UPDATE:
-            let rot = (state.rot + 360 + state.rotSpeed) % 360;
+            rot = (state.rot + 360 + state.rotSpeed) % 360;
             return Object.assign({}, state, {
                 pos: {
                     x: (state.pos.x + calcXDist(state.dir, state.speed) +
@@ -65,4 +66,4 @@ export default function spaceship(state = (() => {
         default:
             return state;
     }
-};
+}

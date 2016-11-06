@@ -10,8 +10,12 @@ function newAsteroid(maxAcceleration) {
         dir: rot,
         rot: rot,
         pos: {
-            x: xEdge ? 0 : Math.round(Math.random() * gameConfig.GAME_WIDTH),
-            y: yEdge ? 0 : Math.round(Math.random() * gameConfig.GAME_HEIGHT)
+            x: xEdge
+                ? 0
+                : Math.round(Math.random() * gameConfig.GAME_WIDTH),
+            y: yEdge
+                ? 0
+                : Math.round(Math.random() * gameConfig.GAME_HEIGHT)
         },
         radius: gameConfig.ASTEROID_RADIUS,
         speed: Math.ceil(Math.random() * maxAcceleration)
@@ -23,12 +27,11 @@ export default function asteroidField(state = {
     maxAcceleration: gameConfig.ASTEROID_START_MAX_ACCL,
     asteroids: []
 }, action) {
+    var asteroids, maxAcceleration;
     switch (action.type) {
         case actionTypes.START:
-            let asteroids = [...state.asteroids];
+            asteroids = [...state.asteroids];
             while(asteroids.length < gameConfig.ASTEROID_START_COUNT) {
-                let xEdge = !!Math.round(Math.random());
-                let yEdge = !xEdge;
                 asteroids.push(newAsteroid(gameConfig.ASTEROID_START_MAX_ACCL));
             }
             return Object.assign({}, state, {
@@ -54,7 +57,7 @@ export default function asteroidField(state = {
             });
             return Object.assign({}, state, {asteroids: asteroids});
         case actionTypes.ASTEROID_HIT:
-            let maxAcceleration = state.maxAcceleration +
+            maxAcceleration = state.maxAcceleration +
                 gameConfig.ASTEROID_START_MAX_ACCL_INCR;
             asteroids = state.asteroids.filter(function(asteroid, index) {
                 return index !== action.asteroid.index
@@ -67,4 +70,4 @@ export default function asteroidField(state = {
         default:
             return state;
     }
-};
+}

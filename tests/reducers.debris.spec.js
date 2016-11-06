@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-    renderIntoDocument,
-} from 'react-addons-test-utils';
 import debris from '../src/reducers/debris.js';
 import * as actionTypes from '../src/constants/actionTypes.js';
 import * as gameConfig from '../src/constants/gameConfig.js';

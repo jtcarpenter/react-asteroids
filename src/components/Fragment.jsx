@@ -1,5 +1,4 @@
-import React, {PropTypes, Component} from 'react';
-import {Provider, connect} from 'react-redux';
+import React from 'react';
 import {Line} from 'react-konva';
 
 class Fragment extends React.Component {

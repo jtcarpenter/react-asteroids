@@ -32,7 +32,7 @@ export default function laser(state = {
             })
 
             // filter out all bolts which have left the game area
-            .filter(function(bolt, index) {
+            .filter(function(bolt) {
                 return  bolt.pos.x >= 0 &&
                         bolt.pos.x <= (gameConfig.GAME_WIDTH) &&
                         bolt.pos.y >= 0 &&
@@ -48,4 +48,4 @@ export default function laser(state = {
         default:
             return state;
     }
-};
+}

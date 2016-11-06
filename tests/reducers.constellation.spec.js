@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-    renderIntoDocument,
-} from 'react-addons-test-utils';
 import constellation from '../src/reducers/constellation.js';
-import * as actionTypes from '../src/constants/actionTypes.js';
 import * as gameConfig from '../src/constants/gameConfig.js';
 
 describe('constellation reducer', () => {

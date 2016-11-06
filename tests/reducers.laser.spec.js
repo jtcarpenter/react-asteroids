@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-    renderIntoDocument,
-} from 'react-addons-test-utils';
 import laser from '../src/reducers/laser.js';
 import * as actionTypes from '../src/constants/actionTypes.js';
 import * as gameConfig from '../src/constants/gameConfig.js';
@@ -107,9 +104,5 @@ describe('laser reducer', () => {
             );
             expect(actual.bolts.length).to.equal(0);
         });
-    });
-
-    describe('ASTEROID_HIT action type', () => {
-
     });
 });
