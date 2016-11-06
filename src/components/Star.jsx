@@ -5,12 +5,15 @@ class Star extends React.Component {
 
     render() {
         var {pos, opacity, radius} = this.props;
-        return <Circle
+        return (
+            <Circle
                 x={pos.x}
                 y={pos.y}
                 radius={radius}
                 fill="#ffffff"
-                opacity={opacity}/>
+                opacity={opacity}
+            />
+        )
     }
 }
 

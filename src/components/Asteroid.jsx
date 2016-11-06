@@ -6,7 +6,8 @@ class Asteroid extends React.Component {
     render() {
         var {pos, rot, radius} = this.props;
         var unit = radius / 10;
-        return <Line
+        return (
+            <Line
                 x={pos.x}
                 y={pos.y}
                 points={
@@ -24,7 +25,9 @@ class Asteroid extends React.Component {
                 closed="true"
                 strokeWidth={1}
                 stroke="#ffffff"
-                rotation={rot}/>
+                rotation={rot}
+            />
+        )
     }
 }
 

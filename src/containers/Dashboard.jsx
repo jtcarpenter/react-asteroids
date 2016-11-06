@@ -77,23 +77,28 @@ class Dashboard extends React.Component {
             playBtnStyle = playBtnStyles.show;
         }
 
-        return <div
-            style={style}>
+        return (
             <div
-                width={width}
-                style={navStyle}>
-                &#x21E6;
-                &#x21E7;
-                &#x21E8; to move
-                [SPACE] to shoot
+                style={style}
+            >
+                <div
+                    width={width}
+                    style={navStyle}
+                >
+                    &#x21E6;
+                    &#x21E7;
+                    &#x21E8; to move
+                    [SPACE] to shoot
+                </div>
+                <p style={messagestyle}>{dashboard.message}</p>
+                <button
+                    onClick={this.handleClick}
+                    style={playBtnStyle}
+                >
+                    Play
+                </button>
             </div>
-            <p style={messagestyle}>{dashboard.message}</p>
-            <button
-                onClick={this.handleClick}
-                style={playBtnStyle}>
-                Play
-            </button>
-        </div>
+        )
     }
 }
 

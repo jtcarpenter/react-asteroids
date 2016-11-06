@@ -5,7 +5,8 @@ class Fragment extends React.Component {
 
     render() {
         var {pos, rot, radius} = this.props;
-        return <Line
+        return (
+            <Line
                 x={pos.x}
                 y={pos.y}
                 points={
@@ -18,7 +19,9 @@ class Fragment extends React.Component {
                 strokeWidth={1}
                 closed="true"
                 stroke="#ffffff"
-                rotation={rot}/>
+                rotation={rot}
+            />
+        )
     }
 }
 

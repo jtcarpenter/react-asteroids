@@ -27,7 +27,7 @@
         ],
         "array-callback-return": "error",
         "arrow-body-style": "off",
-        "arrow-parens": "error",
+        "arrow-parens": "off",
         "arrow-spacing": [
             "error",
             {
@@ -37,7 +37,7 @@
         ],
         "block-scoped-var": "error",
         "block-spacing": "error",
-        "brace-style": "error",
+        "brace-style": "off",
         "callback-return": "error",
         "camelcase": "error",
         "class-methods-use-this": [
@@ -97,6 +97,14 @@
         "init-declarations": "off",
         "jsx-quotes": "error",
         "react/jsx-uses-vars": [2],
+        "react/jsx-space-before-closing": "error",
+        "react/jsx-closing-bracket-location": "error",
+        "react/jsx-curly-spacing": "error",
+        "react/jsx-boolean-value": "error",
+        "react/no-string-refs": "error",
+        "react/wrap-multilines": "error",
+        "react/self-closing-comp": "error",
+        "react/require-render-return": "error",
         "key-spacing": "error",
         "keyword-spacing": "off",
         "line-comment-position": "error",

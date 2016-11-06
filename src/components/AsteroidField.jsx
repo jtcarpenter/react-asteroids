@@ -17,42 +17,50 @@ class AsteroidField extends React.Component {
             height
         } = this.props;
 
-        return <Layer>
-            <Rect
-                width={width}
-                height={height}
+        return (
+            <Layer>
+                <Rect
+                    width={width}
+                    height={height}
                 />
-            <Spaceship
-                pos={spaceship.pos}
-                rot={spaceship.rot}
-                radius={spaceship.radius}
-                laser={laser}
-            />
-            {laser.bolts.map((bolt) => {
-                return <LaserBolt
-                    key={Math.random()}
-                    rot={bolt.rot}
-                    radius={bolt.radius}
-                    pos={bolt.pos}>
-                </LaserBolt>
-            })}
-            {asteroidField.asteroids.map((asteroid) => {
-                return <Asteroid
-                    key={Math.random()}
-                    rot={asteroid.rot}
-                    radius={asteroid.radius}
-                    pos={asteroid.pos}>
-                </Asteroid>
-            })}
-            {debris.fragments.map((fragment) => {
-                return <Fragment
-                    key={Math.random()}
-                    rot={fragment.rot}
-                    radius={fragment.radius}
-                    pos={fragment.pos}>
-                </Fragment>
-            })}
-        </Layer>
+                <Spaceship
+                    pos={spaceship.pos}
+                    rot={spaceship.rot}
+                    radius={spaceship.radius}
+                    laser={laser}
+                />
+                {laser.bolts.map((bolt) => {
+                    return (
+                        <LaserBolt
+                            key={Math.random()}
+                            rot={bolt.rot}
+                            radius={bolt.radius}
+                            pos={bolt.pos}
+                        />
+                    )
+                })}
+                {asteroidField.asteroids.map((asteroid) => {
+                    return (
+                        <Asteroid
+                            key={Math.random()}
+                            rot={asteroid.rot}
+                            radius={asteroid.radius}
+                            pos={asteroid.pos}
+                        />
+                    )
+                })}
+                {debris.fragments.map((fragment) => {
+                    return (
+                        <Fragment
+                            key={Math.random()}
+                            rot={fragment.rot}
+                            radius={fragment.radius}
+                            pos={fragment.pos}
+                        />
+                    )
+                })}
+            </Layer>
+        )
     }
 }
 

@@ -87,40 +87,44 @@ class Game extends React.Component {
             margin: '20px auto'
         }
 
-        return <div
-                ref="asteroids"
+        return (
+            <div
+                ref={ref => { this.gameRef = ref; }}
                 tabIndex="0"
                 onKeyDown={this.handleKeyDown}
                 onKeyUp={this.handleKeyUp}
-                style={styles}>
-            <Stage
-                width={gameConfig.GAME_WIDTH}
-                height={gameConfig.GAME_HEIGHT}
-                scaleX={gameConfig.GAME_SCALE}
-                scaleY={gameConfig.GAME_SCALE}>
-                <Constellation
+                style={styles}
+            >
+                <Stage
                     width={gameConfig.GAME_WIDTH}
-                    height={gameConfig.GAME_HEIGHT}>
-                </Constellation>
-                <AsteroidField
-                    spaceship={spaceship}
-                    laser={laser}
-                    asteroidField={asteroidField}
-                    debris={debris}
+                    height={gameConfig.GAME_HEIGHT}
+                    scaleX={gameConfig.GAME_SCALE}
+                    scaleY={gameConfig.GAME_SCALE}
+                >
+                    <Constellation
+                        width={gameConfig.GAME_WIDTH}
+                        height={gameConfig.GAME_HEIGHT}
+                    />
+                    <AsteroidField
+                        spaceship={spaceship}
+                        laser={laser}
+                        asteroidField={asteroidField}
+                        debris={debris}
+                        width={gameConfig.GAME_WIDTH}
+                        height={gameConfig.GAME_HEIGHT}
+                    />
+                </Stage>
+                <Dashboard
                     width={gameConfig.GAME_WIDTH}
-                    height={gameConfig.GAME_HEIGHT}>
-                </AsteroidField>
-            </Stage>
-            <Dashboard
-                width={gameConfig.GAME_WIDTH}
-                height={gameConfig.GAME_HEIGHT}
-                onStart={this.focus}>
-            </Dashboard>
-        </div>
+                    height={gameConfig.GAME_HEIGHT}
+                    onStart={this.focus}
+                />
+            </div>
+        )
     }
 
     focus() {
-        ReactDOM.findDOMNode(this.refs.asteroids).focus();
+        ReactDOM.findDOMNode(this.gameRef).focus();
     }
 
     componentDidMount() {

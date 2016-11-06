@@ -12,20 +12,25 @@ class Constellation extends React.Component {
             height
         } = this.props;
 
-        return <Layer>
-            <Rect
-                width={width}
-                height={height}
-                fill="#000000"/>
-            {constellation.stars.map((star) => {
-                return <Star
-                    key={Math.random()}
-                    pos={star.pos}
-                    radius={star.radius}
-                    opacity={star.opacity}>
-                </Star>
-            })}
-        </Layer>
+        return (
+            <Layer>
+                <Rect
+                    width={width}
+                    height={height}
+                    fill="#000000"
+                />
+                {constellation.stars.map((star) => {
+                    return (
+                        <Star
+                            key={Math.random()}
+                            pos={star.pos}
+                            radius={star.radius}
+                            opacity={star.opacity}
+                        />
+                    )
+                })}
+            </Layer>
+        )
     }
 }
 

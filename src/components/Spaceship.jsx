@@ -5,7 +5,8 @@ class Spaceship extends React.Component {
 
     render() {
         var {pos, rot, radius} = this.props;
-        return <Line
+        return (
+            <Line
                 x={pos.x}
                 y={pos.y}
                 points={
@@ -19,7 +20,9 @@ class Spaceship extends React.Component {
                 strokeWidth={1}
                 stroke="#ffffff"
                 closed="true"
-                rotation={rot}/>
+                rotation={rot}
+            />
+        )
     }
 }
 
