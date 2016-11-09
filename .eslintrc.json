@@ -121,7 +121,7 @@
         "max-params": "off",
         "max-statements": "off",
         "max-statements-per-line": "error",
-        "mocha/no-exclusive-tests": "error",
+        "mocha/no-exclusive-tests": "off",
         "new-cap": [
             "error",
             {

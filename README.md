@@ -1,3 +1,7 @@
+# React Asteroids
+
+Simple game using React/Redux and react-konva for defining canvas objecs in JSX
+
 ## install
 
 ```
@@ -8,6 +12,12 @@ $ npm install
 
 ```
 $ npm start
+```
+
+## build prod (webpack)
+
+```
+$ npm run deploy
 ```
 
 ## tests
