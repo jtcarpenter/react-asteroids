@@ -29,3 +29,7 @@ $ npm test
 # watch
 $ npm run tdd
 ```
+
+## live url
+
+[http://asteroids.jasoncarpenter.net](http://asteroids.jasoncarpenter.net)

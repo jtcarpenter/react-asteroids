@@ -1,7 +1,7 @@
 {
   "name": "react-asteroids",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple game using React/Redux and react-konva for defining canvas objecs in JSX",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
@@ -9,7 +9,7 @@
     "tdd": "karma start --auto-watch --no-single-run",
     "deploy": "NODE_ENV=prod webpack -p"
   },
-  "author": "",
+  "author": "Jason Carpenter <mail@jasoncarpenter.net>",
   "license": "ISC",
   "dependencies": {
     "konva": "^1.1.1",
