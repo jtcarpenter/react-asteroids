@@ -1,6 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 import * as gameConfig from '../constants/gameConfig.js';
-import {calcXDist, calcYDist} from '../helpers/gameHelpers.js';
+import {screen, calcXDist, calcYDist} from '../helpers/gameHelpers.js';
 
 function newAsteroid(maxAcceleration) {
     var xEdge = !!Math.round(Math.random());
@@ -12,10 +12,10 @@ function newAsteroid(maxAcceleration) {
         pos: {
             x: xEdge
                 ? 0
-                : Math.round(Math.random() * gameConfig.GAME_WIDTH),
+                : Math.round(Math.random() * screen.width),
             y: yEdge
                 ? 0
-                : Math.round(Math.random() * gameConfig.GAME_HEIGHT)
+                : Math.round(Math.random() * screen.height)
         },
         radius: gameConfig.ASTEROID_RADIUS,
         speed: Math.ceil(Math.random() * maxAcceleration)
@@ -45,9 +45,9 @@ export default function asteroidField(state = {
                 return {
                     pos: {
                         x: (asteroid.pos.x + calcXDist(asteroid.dir, asteroid.speed) +
-                            gameConfig.GAME_WIDTH) % gameConfig.GAME_WIDTH,
+                            screen.width) % screen.width,
                         y: (asteroid.pos.y + calcYDist(asteroid.dir, asteroid.speed) +
-                            gameConfig.GAME_HEIGHT) % gameConfig.GAME_HEIGHT
+                            screen.height) % screen.height
                     },
                     radius: asteroid.radius,
                     rot: asteroid.rot,

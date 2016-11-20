@@ -1,10 +1,8 @@
 import React from 'react';
-import {
-    renderIntoDocument,
-} from 'react-addons-test-utils';
 import spaceship from '../src/reducers/spaceship.js';
 import * as actionTypes from '../src/constants/actionTypes.js';
 import * as gameConfig from '../src/constants/gameConfig.js';
+import {screen} from '../src/helpers/gameHelpers';
 
 describe('spaceship reducer', () => {
 
@@ -20,8 +18,8 @@ describe('spaceship reducer', () => {
         dir: 0,
         rot: 0,
         pos: {
-            x: Math.round(gameConfig.GAME_WIDTH / 2),
-            y: Math.round(gameConfig.GAME_HEIGHT / 2)
+            x: Math.round(screen.width / 2),
+            y: Math.round(screen.height / 2)
         },
         radius: gameConfig.SPACESHIP_RADIUS,
         rotSpeed: 0,
@@ -194,7 +192,7 @@ describe('spaceship reducer', () => {
         });
 
         it('it should wrap when leaving right of game area', () => {
-            state.pos.x = gameConfig.GAME_WIDTH;
+            state.pos.x = screen.width;
             actual = spaceship(state,
                 {type: actionTypes.UPDATE}
             );
@@ -204,7 +202,7 @@ describe('spaceship reducer', () => {
 
         it('it should wrap when leaving bottom of game area', () => {
             state.dir = 90;
-            state.pos.y = gameConfig.GAME_HEIGHT;
+            state.pos.y = screen.height;
             actual = spaceship(state,
                 {type: actionTypes.UPDATE}
             );
@@ -218,7 +216,7 @@ describe('spaceship reducer', () => {
             actual = spaceship(state,
                 {type: actionTypes.UPDATE}
             );
-            expect(actual.pos.x).to.equal(gameConfig.GAME_WIDTH - SPEED);
+            expect(actual.pos.x).to.equal(screen.width - SPEED);
             expect(actual.pos.y).to.equal(Y_POS);
         });
 
@@ -229,7 +227,7 @@ describe('spaceship reducer', () => {
                 {type: actionTypes.UPDATE}
             );
             expect(actual.pos.x).to.equal(X_POS);
-            expect(actual.pos.y).to.equal(gameConfig.GAME_HEIGHT - SPEED);
+            expect(actual.pos.y).to.equal(screen.height - SPEED);
         });
     });
 });

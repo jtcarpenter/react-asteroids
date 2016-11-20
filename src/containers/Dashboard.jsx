@@ -5,7 +5,7 @@ import {
     start
 } from '../actions/gameActions.js';
 import * as gameStates from '../constants/gameStates.js';
-import * as gameConfig from '../constants/gameConfig.js';
+import {screen} from '../helpers/gameHelpers.js';
 
 const style = {
     position: 'absolute',
@@ -19,7 +19,7 @@ const style = {
 const navStyle = {
     textAlign: 'center',
     display: 'block',
-    width: gameConfig.GAME_WIDTH,
+    width: screen.width,
     height: '40px',
     marginTop: '10px'
 };
@@ -28,7 +28,7 @@ const messagestyle = {
     width: '100%',
     textAlign: 'center',
     height: 20,
-    marginTop: gameConfig.GAME_HEIGHT / 4
+    marginTop: screen.height / 4
 };
 const playBtnStyles = {
     'show': {

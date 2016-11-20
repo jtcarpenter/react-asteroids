@@ -6,7 +6,7 @@ import Constellation from '../containers/Constellation.jsx';
 import AsteroidField from '../components/AsteroidField.jsx';
 import Dashboard from '../containers/Dashboard.jsx';
 import * as keyCodes from '../constants/keyCodes.js';
-import * as gameConfig from '../constants/gameConfig.js';
+import {screen} from '../helpers/gameHelpers.js';
 import {
     rotateRight,
     rotateLeft,
@@ -23,9 +23,9 @@ class Game extends React.Component {
 
     constructor() {
         super();
-        this.handleKeyDown = this.handleKeyDown.bind(this);
-        this.handleKeyUp = this.handleKeyUp.bind(this);
-        this.focus = this.focus.bind(this);
+        this.handleKeyDown  = this.handleKeyDown.bind(this);
+        this.handleKeyUp    = this.handleKeyUp.bind(this);
+        this.focus          = this.focus.bind(this);
     }
 
     handleKeyDown(event) {
@@ -71,6 +71,10 @@ class Game extends React.Component {
         }
     }
 
+    static handleResize() {
+        screen.resize();
+    }
+
     render() {
 
         var {
@@ -80,43 +84,33 @@ class Game extends React.Component {
             debris
         } = this.props;
 
-        var styles = {
-            position: 'relative',
-            width: `${gameConfig.GAME_WIDTH}px`,
-            height: `${gameConfig.GAME_HEIGHT}px`,
-            margin: '20px auto'
-        }
-
         return (
             <div
                 ref={ref => { this.gameRef = ref; }}
                 tabIndex="0"
                 onKeyDown={this.handleKeyDown}
                 onKeyUp={this.handleKeyUp}
-                style={styles}
             >
                 <Stage
-                    width={gameConfig.GAME_WIDTH}
-                    height={gameConfig.GAME_HEIGHT}
-                    scaleX={gameConfig.GAME_SCALE}
-                    scaleY={gameConfig.GAME_SCALE}
+                    width={screen.width}
+                    height={screen.height}
                 >
                     <Constellation
-                        width={gameConfig.GAME_WIDTH}
-                        height={gameConfig.GAME_HEIGHT}
+                        width={screen.width}
+                        height={screen.height}
                     />
                     <AsteroidField
                         spaceship={spaceship}
                         laser={laser}
                         asteroidField={asteroidField}
                         debris={debris}
-                        width={gameConfig.GAME_WIDTH}
-                        height={gameConfig.GAME_HEIGHT}
+                        width={screen.width}
+                        height={screen.height}
                     />
                 </Stage>
                 <Dashboard
-                    width={gameConfig.GAME_WIDTH}
-                    height={gameConfig.GAME_HEIGHT}
+                    width={screen.width}
+                    height={screen.height}
                     onStart={this.focus}
                 />
             </div>
@@ -128,7 +122,12 @@ class Game extends React.Component {
     }
 
     componentDidMount() {
+        window.addEventListener('resize',  this.constructor.handleResize);
         this.updateGame();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.constructor.handleResize);
     }
 }
 

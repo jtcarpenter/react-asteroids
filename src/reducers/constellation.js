@@ -1,6 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 import * as gameConfig from '../constants/gameConfig.js';
-import {randomNumInRange} from '../helpers/gameHelpers.js';
+import {screen, randomNumInRange} from '../helpers/gameHelpers.js';
 
 export default function constellation(state = {
     stars: (function() {
@@ -14,8 +14,8 @@ export default function constellation(state = {
                 ),
                 increasing: false,
                 pos: {
-                    x: Math.round(Math.random() * gameConfig.GAME_WIDTH),
-                    y: Math.round(Math.random() * gameConfig.GAME_HEIGHT)
+                    x: Math.round(Math.random() * screen.width),
+                    y: Math.round(Math.random() * screen.height)
                 }
             });
         }

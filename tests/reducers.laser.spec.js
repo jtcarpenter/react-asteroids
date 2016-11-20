@@ -1,7 +1,7 @@
 import React from 'react';
 import laser from '../src/reducers/laser.js';
 import * as actionTypes from '../src/constants/actionTypes.js';
-import * as gameConfig from '../src/constants/gameConfig.js';
+import {screen} from '../src/helpers/gameHelpers';
 
 describe('laser reducer', () => {
 
@@ -71,7 +71,7 @@ describe('laser reducer', () => {
 
         it('should remove bolt when it leaves the right of game area', () => {
             // facing right
-            state.bolts = [{rot: 0, pos: {x: gameConfig.GAME_WIDTH, y: 0}}];
+            state.bolts = [{rot: 0, pos: {x: screen.width, y: 0}}];
             actual = laser(state,
                 {type: actionTypes.UPDATE}
             );
@@ -80,7 +80,7 @@ describe('laser reducer', () => {
 
         it('should remove bolt when it leaves the bottom of game area', () => {
             // facing down
-            state.bolts = [{rot: 90, pos: {x: 0, y: gameConfig.GAME_HEIGHT}}];
+            state.bolts = [{rot: 90, pos: {x: 0, y: screen.height}}];
             actual = laser(state,
                 {type: actionTypes.UPDATE}
             );

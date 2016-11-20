@@ -17,7 +17,7 @@ export default function dashboard(state = {
             return Object.assign({}, state, {
                 message: `Game over! You hit ${state.score} asteroid${state.score !== 1
                     ? 's'
-                    :''}`,
+                    : ''}`,
                 gameState: gameStates.STOPPED
             });
         case actionTypes.ASTEROID_HIT:

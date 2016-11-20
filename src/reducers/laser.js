@@ -1,6 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 import * as gameConfig from '../constants/gameConfig.js';
-import {calcXDist, calcYDist} from '../helpers/gameHelpers.js';
+import {screen, calcXDist, calcYDist} from '../helpers/gameHelpers.js';
 
 export default function laser(state = {
     speed: gameConfig.LASER_BOLT_ACCL,
@@ -34,9 +34,9 @@ export default function laser(state = {
             // filter out all bolts which have left the game area
             .filter(function(bolt) {
                 return  bolt.pos.x >= 0 &&
-                        bolt.pos.x <= (gameConfig.GAME_WIDTH) &&
+                        bolt.pos.x <= (screen.width) &&
                         bolt.pos.y >= 0 &&
-                        bolt.pos.y <= gameConfig.GAME_HEIGHT;
+                        bolt.pos.y <= screen.height;
             });
 
             return Object.assign({}, state, {bolts: bolts});

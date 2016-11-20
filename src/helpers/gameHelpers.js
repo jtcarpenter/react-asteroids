@@ -19,3 +19,27 @@ export function calcXDist(rotation, distance) {
 export function calcYDist(rotation, distance) {
     return Math.sin(rotation * Math.PI / 180) * distance;
 }
+
+export let screen = {
+    _width: null,
+    _height: null,
+
+    get width() {
+        if (!this._width) {
+            this.resize();
+        }
+        return this._width;
+    },
+
+    get height() {
+        if (!this._height) {
+            this.resize();
+        }
+        return this._height;
+    },
+
+    resize: function() {
+        this._width = window.innerWidth;// || gameConfig.GAME_WIDTH;
+        this._height = window.innerHeight;// || gameConfig.GAME_HEIGHT;
+    }
+}

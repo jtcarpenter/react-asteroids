@@ -1,6 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 import * as gameConfig from '../constants/gameConfig.js';
-import {calcXDist, calcYDist} from '../helpers/gameHelpers.js';
+import {screen, calcXDist, calcYDist} from '../helpers/gameHelpers.js';
 
 const resetSpaceship = {
     dir: undefined,
@@ -14,8 +14,8 @@ const initSpaceship = {
     dir: 0,
     rot: 0,
     pos: {
-        x: Math.round(gameConfig.GAME_WIDTH / 2),
-        y: Math.round(gameConfig.GAME_HEIGHT / 2)
+        x: Math.round(screen.width / 2),
+        y: Math.round(screen.height / 2)
     },
     radius: gameConfig.SPACESHIP_RADIUS,
     rotSpeed: 0,
@@ -56,9 +56,9 @@ export default function spaceship(state = (() => {
             return Object.assign({}, state, {
                 pos: {
                     x: (state.pos.x + calcXDist(state.dir, state.speed) +
-                        gameConfig.GAME_WIDTH) % gameConfig.GAME_WIDTH,
+                        screen.width) % screen.width,
                     y: (state.pos.y + calcYDist(state.dir, state.speed) +
-                        gameConfig.GAME_HEIGHT) % gameConfig.GAME_HEIGHT
+                        screen.height) % screen.height
                 },
                 rot: rot,
                 dir: rot

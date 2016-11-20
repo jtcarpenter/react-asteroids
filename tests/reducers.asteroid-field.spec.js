@@ -2,6 +2,7 @@ import React from 'react';
 import asteroidField from '../src/reducers/asteroidField.js';
 import * as actionTypes from '../src/constants/actionTypes.js';
 import * as gameConfig from '../src/constants/gameConfig.js';
+import {screen} from '../src/helpers/gameHelpers';
 
 describe('asteroidField reducer', () => {
 
@@ -88,7 +89,7 @@ describe('asteroidField reducer', () => {
 
         it('should wrap when leaving right of game area', () => {
             // facing right
-            state.asteroids[0].pos.x = gameConfig.GAME_WIDTH;
+            state.asteroids[0].pos.x = screen.width;
             actual = asteroidField(state,
                 {type: actionTypes.UPDATE}
             );
@@ -99,7 +100,7 @@ describe('asteroidField reducer', () => {
         it('should wrap when leaving bottom of game area', () => {
             // facing down
             state.asteroids[0].dir = 90;
-            state.asteroids[0].pos.y = gameConfig.GAME_HEIGHT;
+            state.asteroids[0].pos.y = screen.height;
             actual = asteroidField(state,
                 {type: actionTypes.UPDATE}
             );
@@ -114,7 +115,7 @@ describe('asteroidField reducer', () => {
             actual = asteroidField(state,
                 {type: actionTypes.UPDATE}
             );
-            expect(actual.asteroids[0].pos.x).to.equal(gameConfig.GAME_WIDTH - X_POS);
+            expect(actual.asteroids[0].pos.x).to.equal(screen.width - X_POS);
             expect(actual.asteroids[0].pos.y).to.equal(Y_POS);
         });
 
@@ -126,7 +127,7 @@ describe('asteroidField reducer', () => {
                 {type: actionTypes.UPDATE}
             );
             expect(actual.asteroids[0].pos.x).to.equal(X_POS);
-            expect(actual.asteroids[0].pos.y).to.equal(gameConfig.GAME_HEIGHT - Y_POS);
+            expect(actual.asteroids[0].pos.y).to.equal(screen.height - Y_POS);
         });
     });
 
