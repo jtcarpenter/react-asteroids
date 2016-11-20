@@ -39,7 +39,7 @@ export let screen = {
     },
 
     resize: function() {
-        this._width = window.innerWidth;// || gameConfig.GAME_WIDTH;
-        this._height = window.innerHeight;// || gameConfig.GAME_HEIGHT;
+        this._width = window.innerWidth;
+        this._height = window.innerHeight;
     }
 }

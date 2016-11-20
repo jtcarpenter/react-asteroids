@@ -25,7 +25,7 @@ export default function laser(state = {
                         x: bolt.pos.x + calcXDist(bolt.dir, state.speed),
                         y: bolt.pos.y + calcYDist(bolt.dir, state.speed)
                     },
-                    radius: gameConfig.LASER_BOLT_RADIUS,
+                    radius: 1,
                     rot: bolt.rot,
                     dir: bolt.rot
                 }

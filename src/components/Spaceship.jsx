@@ -11,7 +11,7 @@ class Spaceship extends React.Component {
                 y={pos.y}
                 points={
                     [
-                        -(radius *2), -radius,
+                        -(radius * 2), -radius,
                         radius * 2, 0,
                         -(radius * 2), radius,
                         -radius, 0

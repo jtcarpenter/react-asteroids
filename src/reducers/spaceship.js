@@ -10,16 +10,19 @@ const resetSpaceship = {
     rotSpeed: undefined,
     speed: undefined
 }
-const initSpaceship = {
-    dir: 0,
-    rot: 0,
-    pos: {
-        x: Math.round(screen.width / 2),
-        y: Math.round(screen.height / 2)
-    },
-    radius: gameConfig.SPACESHIP_RADIUS,
-    rotSpeed: 0,
-    speed: 0
+
+function initSpaceship() {
+    return {
+        dir: 0,
+        rot: 0,
+        pos: {
+            x: Math.round(screen.width / 2),
+            y: Math.round(screen.height / 2)
+        },
+        radius: screen.width / gameConfig.SPACESHIP_SCALE,
+        rotSpeed: 0,
+        speed: 0
+    }
 }
 
 export default function spaceship(state = (() => {
@@ -28,7 +31,7 @@ export default function spaceship(state = (() => {
     var rot;
     switch (action.type) {
         case actionTypes.START:
-            return Object.assign({}, state, initSpaceship);
+            return Object.assign({}, state, initSpaceship());
         case actionTypes.ROTATE_RIGHT:
             return Object.assign({}, state, {
                 rotSpeed: gameConfig.SPACESHIP_ROT_SPEED

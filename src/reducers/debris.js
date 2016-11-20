@@ -34,7 +34,7 @@ export default function debris(state = {
                 fragments.push(newFragment(
                     action.asteroid.pos.x,
                     action.asteroid.pos.y,
-                    gameConfig.ASTEROID_FRAGMENT_RADIUS,
+                    screen.width / gameConfig.ASTEROID_FRAGMENT_SCALE,
                     gameConfig.ASTEROID_FRAGMENT_SPEED,
                     gameConfig.ASTEROID_FRAGMENT_ROT_SPEED
                 ));
@@ -48,7 +48,7 @@ export default function debris(state = {
                 fragments.push(newFragment(
                     action.spaceship.pos.x,
                     action.spaceship.pos.y,
-                    gameConfig.SPACESHIP_FRAGMENT_RADIUS,
+                    screen.width / gameConfig.SPACESHIP_FRAGMENT_SCALE,
                     gameConfig.SPACESHIP_FRAGMENT_SPEED,
                     gameConfig.SPACESHIP_FRAGMENT_ROT_SPEED
                 ));

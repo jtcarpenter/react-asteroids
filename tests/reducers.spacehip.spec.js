@@ -21,7 +21,7 @@ describe('spaceship reducer', () => {
             x: Math.round(screen.width / 2),
             y: Math.round(screen.height / 2)
         },
-        radius: gameConfig.SPACESHIP_RADIUS,
+        radius: screen.width / gameConfig.SPACESHIP_SCALE,
         rotSpeed: 0,
         speed: 0
     }

@@ -19,7 +19,7 @@ const style = {
 const navStyle = {
     textAlign: 'center',
     display: 'block',
-    width: screen.width,
+    width: '100%',
     height: '40px',
     marginTop: '10px'
 };
@@ -28,7 +28,7 @@ const messagestyle = {
     width: '100%',
     textAlign: 'center',
     height: 20,
-    marginTop: screen.height / 4
+    marginTop: '25vh'
 };
 const playBtnStyles = {
     'show': {
@@ -67,10 +67,7 @@ class Dashboard extends React.Component {
 
     render() {
 
-        var {
-            width,
-            dashboard
-        } = this.props;
+        var {dashboard} = this.props;
 
         var playBtnStyle = playBtnStyles.hide;
         if (dashboard.gameState === gameStates.STOPPED) {
@@ -82,7 +79,6 @@ class Dashboard extends React.Component {
                 style={style}
             >
                 <div
-                    width={width}
                     style={navStyle}
                 >
                     &#x21E6;

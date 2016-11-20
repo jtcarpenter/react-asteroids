@@ -17,7 +17,7 @@ function newAsteroid(maxAcceleration) {
                 ? 0
                 : Math.round(Math.random() * screen.height)
         },
-        radius: gameConfig.ASTEROID_RADIUS,
+        radius: screen.width / gameConfig.ASTEROID_SCALE,
         speed: Math.ceil(Math.random() * maxAcceleration)
     }
     return asteroid;
